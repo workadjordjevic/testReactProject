@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import './ChangeThemeButton.scss';
 import ThemeContext from "../../Contexts/ThemeContext";
 import {returnThemeString} from "../../utils/returnThemeString";
+import {returnCapitalLetterThemeString} from "../../utils/returnCapitalLetterThemeString";
 
 const ChangeThemeButton = () => {
 
@@ -11,13 +12,9 @@ const ChangeThemeButton = () => {
         setIsDarkTheme(!isDarkTheme);
     }
 
-    function printThemeName() {
-        return isDarkTheme? "Dark" : "Light";
-        }
-
     return (
-        <button className={`${returnThemeString(isDarkTheme)}ButtonTheme`} onClick={changeTheme}>
-            {printThemeName()}
+        <button className={(isDarkTheme)? "darkButtonTheme" : "lightButtonTheme"} onClick={changeTheme}>
+            {returnCapitalLetterThemeString(isDarkTheme)}
         </button>
     );
 };
