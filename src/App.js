@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import './styles/App.css';
-import {Routes, Route, Navigate} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import NavigationBar from "./Components/NavigationBar/NavigationBar";
 import { lazy,Suspense } from 'react';
 import ThemeContext from "./Contexts/ThemeContext";
@@ -36,3 +36,7 @@ export default App;
 
 // git repository , закомититься, изменения запушить
 // на гитхабе. pull request
+// тема для todolist, замена кнопки и инпута
+// переделать задавание названия классов темы
+// отрефакторить css
+// начать изучать redux https://www.youtube.com/watch?v=C0fBnil_Im4&list=PLiZoB8JBsdznQv3kAEvTzDP2qjaUI8Vo7

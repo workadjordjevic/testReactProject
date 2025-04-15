@@ -51,8 +51,8 @@ const Calculator = () => {
                 return <CalculatorButton value={element} key={element} onButtonClick={handleSetValue}/>
             })
             }<br/>
-            <input disabled value={value} placeholder={"Enter number here "} className={`${returnThemeString(isDarkTheme)}ThemeInput`}></input><br/>
-            <button onClick={resetInput} className={`${returnThemeString(isDarkTheme)}ThemeResetButton`}>Reset</button><br/>
+            <input disabled value={value} placeholder={"Enter number here "} className={`${returnThemeString(isDarkTheme)}ThemeInput`}></input>
+            <button onClick={resetInput} className={`${returnThemeString(isDarkTheme)}ThemeResetButton`}>Reset</button>
         </div>
     );
 };
