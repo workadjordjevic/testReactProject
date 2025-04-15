@@ -7,6 +7,12 @@ body {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    margin: 5px;
+}
+
+.searchBarInputDark {
+    background-color: #4080bf;
+    color: ghostwhite;
 }
 
 .currentWeatherInfo {

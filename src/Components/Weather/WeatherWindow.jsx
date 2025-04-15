@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useEffect, useState, useMemo, useContext} from 'react';
 import {fetchWeather, fetchWeatherForecast} from "./api/keyAndURL";
 import "./WeatherWindow.css";
 import "./components/WeatherAdditionalInfo/WeatherAdditionalInfo.css"
@@ -6,6 +6,8 @@ import DailyWeatherList from "./components/DailyWeatherList/DailyWeatherList";
 import WeatherAdditionalInfo from "./components/WeatherAdditionalInfo/WeatherAdditionalInfo";
 import {getForecastDays} from "./utils/getForecastDays";
 import CustomButton from "../CustomButton/CustomButton";
+import {returnCapitalLetterThemeString} from "../../utils/returnCapitalLetterThemeString";
+import ThemeContext from "../../Contexts/ThemeContext";
 
 const WeatherWindow = () => {
     const [serverData, setServerData] = useState(null)
@@ -15,6 +17,7 @@ const WeatherWindow = () => {
     const forecastDays = useMemo(() => {
         return getForecastDays(serverDataForecast);
     },[serverDataForecast]);
+    const {isDarkTheme} = useContext(ThemeContext);
 
 
     useEffect(() => {
@@ -54,7 +57,7 @@ const WeatherWindow = () => {
     return (
         <div className="container">
             <div className={"searchBar"}><input type="text" id="locationInput" value={city} onChange={e => setCity(e.target.value)}
-                        placeholder="Enter a city"/>
+                        className={`searchBarInput${returnCapitalLetterThemeString(isDarkTheme)}`} placeholder="Enter a city"/>
                 <CustomButton id="searchButton" onClick={handleClick} text="Search" size="medium" variant="primary"/>
             </div>
             <DailyWeatherList forecastDay={forecastDays} onCardClick={setCurrentCard}/>

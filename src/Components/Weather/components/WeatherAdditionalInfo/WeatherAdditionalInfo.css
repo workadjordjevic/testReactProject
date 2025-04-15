@@ -1,13 +1,24 @@
-.weatherAdditionalInfoWindow{
+.weatherAdditionalInfoWindowLight{
     background-color: whitesmoke;
     width: 450px;
     padding-bottom: 15px;
-    /*height: 300px;*/
 }
 
-.weatherMessage{
+.weatherAdditionalInfoWindowDark{
+    background-color: #4080bf;
+    width: 450px;
+    padding-bottom: 15px;
+}
+
+.weatherMessageLight{
     font-family: Gill Sans, sans-serif;
     padding: 25px 20px;
+}
+
+.weatherMessageDark{
+    font-family: Gill Sans, sans-serif;
+    padding: 25px 20px;
+    color: ghostwhite;
 }
 
 .additionalInfo{
@@ -19,7 +30,7 @@
     flex-wrap: wrap;
 }
 
-.CardElement{
+.CardElementLight{
     flex-basis: 31%;
     border-radius: 15px;
     font-family:Didot, serif;
@@ -27,9 +38,20 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    /*width: 120px;*/
-    /*height: 100px;*/
     background-color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.CardElementDark{
+    flex-basis: 31%;
+    border-radius: 15px;
+    font-family:Didot, serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ccd9ff;
     text-align: center;
     padding: 20px;
 }

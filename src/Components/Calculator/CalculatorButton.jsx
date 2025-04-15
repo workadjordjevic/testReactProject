@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {returnThemeString} from "../../utils/returnThemeString";
+import ThemeContext from "../../Contexts/ThemeContext";
+import "./CalculatorButton.scss";
 
 const CalculatorButton = ({value, onButtonClick}) => {
+    const {isDarkTheme} = useContext(ThemeContext);
     return (
-        <button onClick={() => onButtonClick(value)} style={{border:"1px solid black", height:"100px", width:"100px" }}>
+        <button onClick={() => onButtonClick(value)} className={`calculatorButton ${returnThemeString(isDarkTheme)}ThemeCalculatorButton`}>
             {value}
         </button>
     );

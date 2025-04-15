@@ -3,19 +3,20 @@ import './styles/App.css';
 import {Routes, Route, Navigate} from 'react-router-dom';
 import NavigationBar from "./Components/NavigationBar/NavigationBar";
 import { lazy,Suspense } from 'react';
-import ToDoList from "./Components/ToDoList/ToDoList";
 import ThemeContext from "./Contexts/ThemeContext";
+import {returnThemeString} from "./utils/returnThemeString";
 
 const WeatherWindow = lazy (() => import("./Components/Weather/WeatherWindow"));
 const Calculator = lazy (() => import("./Components/Calculator/Calculator"));
-const PostForm = lazy (() => import("./Components/PostForm"));
+const ToDoList = lazy (() => import("./Components/ToDoList/ToDoList"));
 
 function App() {
 
     const [isDarkTheme, setIsDarkTheme] = useState(false);
 
     return (
-        <ThemeContext.Provider value={{isDarkTheme, setIsDarkTheme}}><div className="appWindow">
+        <ThemeContext.Provider value={{isDarkTheme, setIsDarkTheme}}>
+        <div className={`${returnThemeString(isDarkTheme)}Theme appWindow`}>
             <div className="appWindowLinks"><NavigationBar /></div>
             <div className="appWindowContent">
                 <Suspense fallback={<div>Loading...</div>}>

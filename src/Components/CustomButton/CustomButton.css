@@ -18,19 +18,35 @@
     border-radius: 10px;
 }
 
-.backgroundColorPrimary{
+.backgroundColorPrimaryLight{
     background-color: limegreen;
 }
 
-.backgroundColorPrimary .textColorClass{
+.backgroundColorPrimaryDark{
+    background-color: #4775d1;
+}
+
+.backgroundColorPrimaryLight .textColorClass{
     color:white;
 }
 
-.backgroundColorPrimary:hover{
+.backgroundColorPrimaryDark .textColorClass{
+    color: ghostwhite;
+}
+
+.backgroundColorPrimaryLight:hover{
     background-color: darkgreen;
 }
 
-.backgroundColorPrimary.disabled{
+.backgroundColorPrimaryDark:hover{
+    background-color: #0000ff;
+}
+
+.backgroundColorPrimaryLight.disabled{
+    background-color: grey;
+}
+
+.backgroundColorPrimaryDark.disabled{
     background-color: grey;
 }
 

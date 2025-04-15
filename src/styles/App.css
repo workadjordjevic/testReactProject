@@ -25,6 +25,14 @@
     flex-direction: column;
 }
 
+.lightTheme {
+    background-color: #fff;
+}
+
+.darkTheme {
+    background-color: #204060;
+}
+
 .appWindowContent{
     display: flex;
     justify-content: center;
