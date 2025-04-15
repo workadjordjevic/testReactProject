@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+}
+
+.post {
+    display: flex;
+    padding: 15px;
+    border: 2px solid black;
+    margin-top: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.appWindow {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.appWindowContent{
+    display: flex;
+    justify-content: center;
+}
+
+.appWindowLinks {
+    height: 50px;
+}

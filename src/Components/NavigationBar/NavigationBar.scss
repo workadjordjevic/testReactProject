@@ -1,0 +1,24 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 5px;
+
+    &__tab {
+        font-size: 20px;
+        text-decoration: none;
+        color: gray;
+        padding-bottom: 10px;
+        border-bottom: 3px solid transparent;
+
+        &:hover{
+            border-bottom: 3px solid green;
+        }
+    }
+}
+
+.navbar__tab--selected{
+    border-bottom: 3px solid green;
+    color: black;
+}

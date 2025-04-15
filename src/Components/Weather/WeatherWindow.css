@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+}
+
+.searchBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.currentWeatherInfo {
+    border: 1px solid black;
+    padding-left: 30px;
+    background-color: aqua;
+}
+
+.currentWeatherSunny {
+    border: 1px solid black;
+    padding-left: 30px;
+    background-color: yellow;
+}
+
+.forecastWeatherInfo {
+    border: 1px solid black;
+    padding-left: 30px;
+}
+
+.forecastToday{
+
+}
+
+.forecastTomorrow{
+
+}
+
+.forecastAfterTomorrow{
+
+}

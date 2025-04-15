@@ -1,0 +1,61 @@
+.default {
+    padding: 5px;
+
+}
+
+.small{
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.medium {
+    padding: 10px;
+    border-radius: 7px;
+}
+
+.large{
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.backgroundColorPrimary{
+    background-color: limegreen;
+}
+
+.backgroundColorPrimary .textColorClass{
+    color:white;
+}
+
+.backgroundColorPrimary:hover{
+    background-color: darkgreen;
+}
+
+.backgroundColorPrimary.disabled{
+    background-color: grey;
+}
+
+.backgroundColorSecondary {
+    background-color: white;
+    border-color:limegreen;
+}
+
+.backgroundColorSecondary .textColorClass{
+    color: limegreen;
+}
+
+.backgroundColorSecondary:hover {
+    background-color: limegreen;
+}
+
+.backgroundColorSecondary:hover .textColorClass{
+    color:white;
+}
+
+.backgroundColorSecondary.disabled{
+    background-color: white;
+    border-color: grey;
+}
+
+.backgroundColorSecondary.disabled .textColorClass{
+    color: grey;
+}

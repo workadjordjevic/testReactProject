@@ -1,0 +1,12 @@
+.weatherList{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    padding: 10px 0;
+    width: 450px;
+    background-color: whitesmoke;
+}
+
+.dark {
+    background-color: #3D6191;
+}

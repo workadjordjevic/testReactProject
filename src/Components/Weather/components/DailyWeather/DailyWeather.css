@@ -1,0 +1,27 @@
+.weatherCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    width: 135px;
+    padding: 10px;
+    background-color: white;
+}
+
+.weatherTextTop{
+    font-family:Didot, serif;
+}
+
+.weatherIcon{
+    width:96px;
+    height: 96px;
+}
+
+.weatherTextBottom{
+    font-family:Didot, serif;
+    display: flex;
+}
+
+.minWeatherTextBottom{
+    opacity: 0.4;
+}

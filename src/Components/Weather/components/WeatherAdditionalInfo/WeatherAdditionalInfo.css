@@ -1,0 +1,40 @@
+.weatherAdditionalInfoWindow{
+    background-color: whitesmoke;
+    width: 450px;
+    padding-bottom: 15px;
+    /*height: 300px;*/
+}
+
+.weatherMessage{
+    font-family: Gill Sans, sans-serif;
+    padding: 25px 20px;
+}
+
+.additionalInfo{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 450px;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+.CardElement{
+    flex-basis: 31%;
+    border-radius: 15px;
+    font-family:Didot, serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /*width: 120px;*/
+    /*height: 100px;*/
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.valueNumbers{
+    font-family:Didot, serif;
+    font-size: 17px;
+}
