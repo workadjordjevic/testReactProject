@@ -15,7 +15,7 @@ const ChangeThemeButton = () => {
         }
 
     return (
-        <button className={`buttonThemeBasicStyles ${(isDarkTheme)? "dark" : "light"}ButtonTheme`} onClick={changeTheme}>
+        <button className={`changeThemeButton changeThemeButton--${(isDarkTheme)? "Dark" : "Light"}`} onClick={changeTheme}>
             {printThemeName()}
         </button>
     );

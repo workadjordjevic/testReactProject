@@ -13,7 +13,7 @@ const DailyWeatherList = ({forecastDay,onCardClick}) => {
     }
 
     return (
-        <div className={`weatherListBasicStyles weatherList${(isDarkTheme)? "Dark" : "Light"}`}>
+        <div className={`weatherList weatherList${(isDarkTheme)? "Dark" : "Light"}`}>
             {forecastDay.map((dailyItem) =>
                 <DailyWeather day={getWeekDayNameByDate(dailyItem.date)} weatherIcon={dailyItem.day.condition.icon}
                               avgTemp={`${dailyItem.day.avgtemp_c}°C`} minTemp={`${dailyItem.day.mintemp_c}°C`} key={dailyItem.date_epoch} onClick={() => onCardClick(dailyItem)}/>

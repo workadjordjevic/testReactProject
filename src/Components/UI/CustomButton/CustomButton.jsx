@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import "./CustomButton.css";
-import ThemeContext from "../../Contexts/ThemeContext";
+import ThemeContext from "../../../Contexts/ThemeContext";
 
 
 const CustomButton = ({id,onClick,size,variant,text,isDisabled}) => {

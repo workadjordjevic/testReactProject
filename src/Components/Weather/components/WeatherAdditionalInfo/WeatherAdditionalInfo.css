@@ -1,4 +1,4 @@
-.weatherAdditionalInfoBasicStyles{
+.weatherAdditionalInfo{
     width: 450px;
     padding-bottom: 15px;
 }
@@ -11,7 +11,7 @@
     background-color: #4080bf;
 }
 
-.weatherMessageBasicStyles{
+.weatherMessage{
     font-family: Gill Sans, sans-serif;
     padding: 25px 20px;
 }
@@ -29,7 +29,7 @@
     flex-wrap: wrap;
 }
 
-.cardElementBasicStyles{
+.cardElement{
     flex-basis: 31%;
     border-radius: 15px;
     font-family:Didot, serif;
