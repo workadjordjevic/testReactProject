@@ -10,17 +10,23 @@
     background-color: #204060;
 }
 
-.lightThemeResetButton {
-    background-color: #fff;
+.themeResetButtonBasicStyles{
     padding: 5px;
     border-radius: 3px;
+}
+
+.lightThemeResetButton {
+    background-color: #fff;
 }
 
 .darkThemeResetButton{
     background-color: #3D6191;
     color: ghostwhite;
-    padding: 5px;
-    border-radius: 3px;
+}
+
+.inputBasicStyles{
+    width: 25%;
+    height: 12%;
 }
 
 .lightThemeInput {

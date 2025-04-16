@@ -1,20 +1,17 @@
-.weatherCardLight{
+.weatherCardBasicStyles{
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 15px;
     width: 135px;
     padding: 10px;
+}
+
+.weatherCardLight{
     background-color: #fff;
 }
 
 .weatherCardDark{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 15px;
-    width: 135px;
-    padding: 10px;
     background-color: #ccd9ff;
 }
 

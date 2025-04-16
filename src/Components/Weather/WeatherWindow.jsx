@@ -6,17 +6,16 @@ import DailyWeatherList from "./components/DailyWeatherList/DailyWeatherList";
 import WeatherAdditionalInfo from "./components/WeatherAdditionalInfo/WeatherAdditionalInfo";
 import {getForecastDays} from "./utils/getForecastDays";
 import CustomButton from "../CustomButton/CustomButton";
-import {returnCapitalLetterThemeString} from "../../utils/returnCapitalLetterThemeString";
 import ThemeContext from "../../Contexts/ThemeContext";
 
 const WeatherWindow = () => {
     const [serverData, setServerData] = useState(null)
     const [serverDataForecast, setServerDataForecast] = useState(null)
     const [city, setCity] = useState("London");
-    const [currentCard, setCurrentCard] = useState (null);
+    const [currentCard, setCurrentCard] = useState(null);
     const forecastDays = useMemo(() => {
         return getForecastDays(serverDataForecast);
-    },[serverDataForecast]);
+    }, [serverDataForecast]);
     const {isDarkTheme} = useContext(ThemeContext);
 
 
@@ -35,29 +34,21 @@ const WeatherWindow = () => {
         setServerDataForecast(requestResult);
     }
 
-    function getClassNameByWeather() {
-        if (serverData?.current?.condition?.text === "Sunny") {
-            return 'currentWeatherSunny';
-        } else {
-            return 'currentWeatherInfo';
-        }
-    }
-
     function handleClick() {
-        // downloadWeather();
         downloadWeatherForecast();
     }
 
     useEffect(() => {
-        if (currentCard){
+        if (currentCard) {
             setCurrentCard(forecastDays[0]);
         }
     }, [serverDataForecast]);
 
     return (
         <div className="container">
-            <div className={"searchBar"}><input type="text" id="locationInput" value={city} onChange={e => setCity(e.target.value)}
-                        className={`searchBarInput${returnCapitalLetterThemeString(isDarkTheme)}`} placeholder="Enter a city"/>
+            <div className={"searchBar"}>
+                <input type="text" id="locationInput" value={city} onChange={e => setCity(e.target.value)}
+                       className={`searchBarInput${(isDarkTheme) ? "Dark" : "Light"}`} placeholder="Enter a city"/>
                 <CustomButton id="searchButton" onClick={handleClick} text="Search" size="medium" variant="primary"/>
             </div>
             <DailyWeatherList forecastDay={forecastDays} onCardClick={setCurrentCard}/>
