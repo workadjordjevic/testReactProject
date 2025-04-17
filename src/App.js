@@ -33,7 +33,4 @@ function App() {
 
 export default App;
 
-// git repository , закомититься, изменения запушить
-// на гитхабе. pull request
-// тема для todolist, замена кнопки и инпута
 // начать изучать redux https://www.youtube.com/watch?v=C0fBnil_Im4&list=PLiZoB8JBsdznQv3kAEvTzDP2qjaUI8Vo7
