@@ -18,35 +18,35 @@
     border-radius: 10px;
 }
 
-.backgroundColorPrimaryLight{
+.backgroundColorPrimary{
     background-color: limegreen;
 }
 
-.backgroundColorPrimaryDark{
+.backgroundColorPrimary.dark{
     background-color: #4775d1;
 }
 
-.backgroundColorPrimaryLight .textColorClass{
+.backgroundColorPrimary .textColorClass{
     color:white;
 }
 
-.backgroundColorPrimaryDark .textColorClass{
+.backgroundColorPrimary.dark .textColorClass{
     color: ghostwhite;
 }
 
-.backgroundColorPrimaryLight:hover{
+.backgroundColorPrimary:hover{
     background-color: darkgreen;
 }
 
-.backgroundColorPrimaryDark:hover{
+.backgroundColorPrimary.dark:hover{
     background-color: #0000ff;
 }
 
-.backgroundColorPrimaryLight.disabled{
+.backgroundColorPrimary.disabled{
     background-color: grey;
 }
 
-.backgroundColorPrimaryDark.disabled{
+.backgroundColorPrimary.dark.disabled{
     background-color: grey;
 }
 

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import MySelect from "../UI/select/MySelect";
 import PostForm from "../PostForm/PostForm";
 import PostList from "../PostList/PostList";
@@ -6,7 +6,7 @@ import ThemeContext from "../../Contexts/ThemeContext";
 import "./ToDoList.scss";
 
 const ToDoList = () => {
-    const [posts,setPosts] = useState([{id:1, title:"js", body:"Description"}]);
+    const [posts,setPosts] = useState([{id:1, title:"Title", body:"Description"}]);
     const createPost = (newPost) => {
         setPosts([...posts, newPost])
     }
@@ -15,6 +15,26 @@ const ToDoList = () => {
         setPosts(posts.filter(p => p.id !== post.id))
     }
     const {isDarkTheme} = useContext(ThemeContext);
+    const [postData, setPostData] = useState({});
+
+    function fetchData() {
+        const url = "https://api.restful-api.dev/objects";
+        return fetch(url)
+            .then(response => response.json())
+            .catch(error => {
+                console.error('Error fetching weather data:', error);
+            });
+    }
+
+    async function receivePostData() {
+        const requestResult = await fetchData();
+        setPostData(requestResult);
+        console.log(requestResult, "request data");
+    }
+
+    useEffect(() => {
+        receivePostData();
+    },[]) //Что указать в зависимостях у этого юзЭффекта
 
     return (
         <div>
@@ -26,14 +46,15 @@ const ToDoList = () => {
                          options={[]}
                      />
                  </div>
-                 {posts.length
-                     ?
-                     <PostList remove={removePost} posts={posts} title={"List"} />
-                     :
-                     <h1 className={`noPostsPlaceholder noPostsPlaceholder--${(isDarkTheme)? "Dark" : "Light"}`}>
-                         Nothing here
-                     </h1>
-                 }
+                 <PostList remove={removePost} posts={postData} title={"List"} />
+                {/*{ "body" in postData[0]*/}
+                {/*    ?*/}
+                {/*    <PostList remove={removePost} posts={postData} title={"List"} />*/}
+                {/*    :*/}
+                {/*    <h1 className={`noPostsPlaceholder noPostsPlaceholder--${(isDarkTheme)? "Dark" : "Light"}`}>*/}
+                {/*        Nothing here*/}
+                {/*    </h1>*/}
+                {/*}*/}
         </div>
     );
 };

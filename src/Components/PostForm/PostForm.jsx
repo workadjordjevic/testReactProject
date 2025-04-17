@@ -6,13 +6,29 @@ const PostForm = ({create}) => {
 
     const [post, setPost] = useState({title:'', body:''});
 
-    const addNewPost = (e) => {
-        e.preventDefault();
-        const newPost = {
-            ...post, id: Date.now()
-        }
-        create(newPost)
-        setPost({title:"", body:""})
+    // const addNewPost = (e) => {
+    //     e.preventDefault();
+    //     const newPost = {
+    //         ...post, id: Date.now()
+    //     }
+    //     create(newPost)
+    //     setPost({title:"", body:""})
+    // }
+
+    async function addNewPost() {
+
+        const addNewPostRequest = await fetch('https://api.restful-api.dev/objects', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(post)
+        });
+
+        setPost({title:"", body:""});
+
+        const newPost = await addNewPostRequest.json();
+        console.log("newPost ",newPost);
     }
 
     return (

@@ -26,10 +26,6 @@
         &:hover{
             border-bottom: 3px solid green;
         }
-        &--selected{
-            border-bottom: 3px solid green;
-            color: black;
-        }
     }
 
     &__tab--dark {
@@ -38,9 +34,15 @@
         &:hover{
             border-bottom: 3px solid #1a53ff;
         }
-        &--selected{
-            border-bottom: 3px solid #1a53ff;
-            color: ghostwhite;
-        }
     }
+}
+
+.navbar__tab--selected.navbar__tab--light {
+    border-bottom: 3px solid green;
+    color: black;
+}
+
+.navbar__tab--selected.navbar__tab--dark {
+    border-bottom: 3px solid #1a53ff;
+    color: ghostwhite;
 }
