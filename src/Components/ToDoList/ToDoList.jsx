@@ -6,7 +6,6 @@ import ThemeContext from "../../Contexts/ThemeContext";
 import "./ToDoList.scss";
 
 const ToDoList = () => {
-    const [posts,setPosts] = useState([{id:1, title:"Title", body:"Description"}]);
     const {isDarkTheme} = useContext(ThemeContext);
     const [postData, setPostData] = useState([]);
     const [postIDs, setPostIDs] = useState([]);
