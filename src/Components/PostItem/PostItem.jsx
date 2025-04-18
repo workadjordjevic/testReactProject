@@ -8,7 +8,7 @@ const PostItem = ({setPostIDs, postIDs, number, id, post}) => {
 
     async function deletePost(id) {
         const deletePostRequest = await fetch(`https://api.restful-api.dev/objects${id}`, {
-            method: 'DELETE'
+            method: 'DELETE' // Network error
         });
 
         setPostIDs(postIDs.filter(p => p.id !== postIDs.id));
