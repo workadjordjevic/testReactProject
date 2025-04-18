@@ -3,7 +3,7 @@ import PostItem from "../PostItem/PostItem";
 import "./PostList.scss";
 import ThemeContext from "../../Contexts/ThemeContext";
 
-const PostList = ({posts ,title ,remove}) => {
+const PostList = ({posts ,title, setPostIDs, postIDs}) => {
     console.log(posts, "posts");
     const {isDarkTheme} = useContext(ThemeContext);
     return (
@@ -12,14 +12,9 @@ const PostList = ({posts ,title ,remove}) => {
             {/*{posts.map((post, index)=>*/}
             {/*    <PostItem remove={remove} number={index + 1} post={post} key={post.id}/>*/}
             {/*)}*/}
-            {
-            (typeof(posts) != "undefined")?
-                    posts.map((post, index)=>
-                <PostItem remove={remove} number={index + 1} post={post} key={post.id}/>)
-                :
-                <div>Nothing here</div>
-
-            }
+            {   posts.map((post, index)=>
+                <PostItem setPostIDs={setPostIDs} postIDs={postIDs} number={index + 1} id={post.id} post={post.data} key={post.id}/>)
+                }
         </div>
     );
 };
