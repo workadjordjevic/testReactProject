@@ -1,7 +1,6 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import './ChangeThemeButton.scss';
 import ThemeContext from "../../Contexts/ThemeContext";
-import {returnThemeString} from "../../utils/returnThemeString";
 
 const ChangeThemeButton = () => {
 
@@ -16,7 +15,7 @@ const ChangeThemeButton = () => {
         }
 
     return (
-        <button className={`${returnThemeString(isDarkTheme)}ButtonTheme`} onClick={changeTheme}>
+        <button className={`changeThemeButton changeThemeButton--${(isDarkTheme)? "Dark" : "Light"}`} onClick={changeTheme}>
             {printThemeName()}
         </button>
     );

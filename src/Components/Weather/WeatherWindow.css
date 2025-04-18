@@ -15,18 +15,6 @@ body {
     color: ghostwhite;
 }
 
-.currentWeatherInfo {
-    border: 1px solid black;
-    padding-left: 30px;
-    background-color: aqua;
-}
-
-.currentWeatherSunny {
-    border: 1px solid black;
-    padding-left: 30px;
-    background-color: yellow;
-}
-
 .forecastWeatherInfo {
     border: 1px solid black;
     padding-left: 30px;

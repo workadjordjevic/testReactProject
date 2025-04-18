@@ -13,12 +13,15 @@
         background-color: #204060;
     }
 
-    &__tab--light {
+    &__tab{
         font-size: 20px;
         text-decoration: none;
-        color: gray;
         padding-bottom: 10px;
         border-bottom: 3px solid transparent;
+    }
+
+    &__tab--light {
+        color: gray;
 
         &:hover{
             border-bottom: 3px solid green;
@@ -26,24 +29,20 @@
     }
 
     &__tab--dark {
-        font-size: 20px;
-        text-decoration: none;
         color: #b3cce6;
-        padding-bottom: 10px;
-        border-bottom: 3px solid transparent;
 
         &:hover{
             border-bottom: 3px solid #1a53ff;
         }
     }
+}
 
-    &__tab--selected--light {
-        border-bottom: 3px solid green;
-        color: black;
-    }
+.navbar__tab--selected.navbar__tab--light {
+    border-bottom: 3px solid green;
+    color: black;
+}
 
-    &__tab--selected--dark {
-        border-bottom: 3px solid #1a53ff;
-        color: ghostwhite;
-    }
+.navbar__tab--selected.navbar__tab--dark {
+    border-bottom: 3px solid #1a53ff;
+    color: ghostwhite;
 }

@@ -1,23 +1,22 @@
-.weatherAdditionalInfoWindowLight{
-    background-color: whitesmoke;
+.weatherAdditionalInfo{
     width: 450px;
     padding-bottom: 15px;
+}
+
+.weatherAdditionalInfoWindowLight{
+    background-color: whitesmoke;
 }
 
 .weatherAdditionalInfoWindowDark{
     background-color: #4080bf;
-    width: 450px;
-    padding-bottom: 15px;
 }
 
-.weatherMessageLight{
+.weatherMessage{
     font-family: Gill Sans, sans-serif;
     padding: 25px 20px;
 }
 
 .weatherMessageDark{
-    font-family: Gill Sans, sans-serif;
-    padding: 25px 20px;
     color: ghostwhite;
 }
 
@@ -30,7 +29,7 @@
     flex-wrap: wrap;
 }
 
-.CardElementLight{
+.cardElement{
     flex-basis: 31%;
     border-radius: 15px;
     font-family:Didot, serif;
@@ -38,22 +37,16 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: white;
     text-align: center;
     padding: 20px;
 }
 
-.CardElementDark{
-    flex-basis: 31%;
-    border-radius: 15px;
-    font-family:Didot, serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.cardElementLight{
+    background-color: white;
+}
+
+.cardElementDark{
     background-color: #ccd9ff;
-    text-align: center;
-    padding: 20px;
 }
 
 .valueNumbers{

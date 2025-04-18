@@ -9,25 +9,3 @@
 .darkThemeCalculatorWindow{
     background-color: #204060;
 }
-
-.lightThemeResetButton {
-    background-color: #fff;
-    padding: 5px;
-    border-radius: 3px;
-}
-
-.darkThemeResetButton{
-    background-color: #3D6191;
-    color: ghostwhite;
-    padding: 5px;
-    border-radius: 3px;
-}
-
-.lightThemeInput {
-    background-color: #fff;
-}
-
-.darkThemeInput{
-    background-color: #4080bf;
-    color: ghostwhite;
-}

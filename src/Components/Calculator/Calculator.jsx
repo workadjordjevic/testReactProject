@@ -4,8 +4,9 @@ import {getOperands} from "../../utils/calculator";
 import {calcCalculatorResult} from "../../utils/calculator"
 import {deleteLastSymbol} from "../../utils/string";
 import './Calculator.css';
-import {returnThemeString} from "../../utils/returnThemeString";
 import ThemeContext from "../../Contexts/ThemeContext";
+import CustomButton from "../UI/CustomButton/CustomButton";
+import CustomInput from "../UI/CustomInput/CustomInput";
 
 const Calculator = () => {
     const [value, setValue] = useState("");
@@ -46,13 +47,13 @@ const Calculator = () => {
     }
 
     return (
-        <div className={`${returnThemeString(isDarkTheme)}ThemeCalculatorWindow calculatorWindow`}>
+        <div className={`${(isDarkTheme)? "dark" : "light"}ThemeCalculatorWindow calculatorWindow`}>
             {options.map((element) => {
                 return <CalculatorButton value={element} key={element} onButtonClick={handleSetValue}/>
             })
-            }<br/>
-            <input disabled value={value} placeholder={"Enter number here "} className={`${returnThemeString(isDarkTheme)}ThemeInput`}></input><br/>
-            <button onClick={resetInput} className={`${returnThemeString(isDarkTheme)}ThemeResetButton`}>Reset</button><br/>
+            }
+            <CustomInput disabled value={value} placeholder={"Enter number here "} style={{width:"25%", height:"12%"}}/>
+            <CustomButton id="resetButton" text="Reset" size="small" variant="primary"  onClick={resetInput}>Reset</CustomButton>
         </div>
     );
 };
