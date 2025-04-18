@@ -33,5 +33,10 @@ function App() {
 
 export default App;
 
-// git repository , закомититься, изменения запушить
-// на гитхабе. pull request
+// начать изучать redux https://www.youtube.com/watch?v=C0fBnil_Im4&list=PLiZoB8JBsdznQv3kAEvTzDP2qjaUI8Vo7
+// разделить классы addPostButton
+// https://restful-api.dev/
+// добавтить запрос на получение списка сохранённых to-do (get request) (тестовые данные не отображать) (проверка на наличие полей ("fieldname" in object)
+// на добавление отправлять to-do задачу через POST запрост (title,description)
+// при добавление/удалении обновлять список (перезапрос get) (тестовые данные не отображать)
+// удалять to-do (delete request (https://api.restful-api.dev/objects/id-of-to-do-task-to-delete))

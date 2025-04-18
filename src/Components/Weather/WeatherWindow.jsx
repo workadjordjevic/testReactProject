@@ -5,7 +5,7 @@ import "./components/WeatherAdditionalInfo/WeatherAdditionalInfo.css"
 import DailyWeatherList from "./components/DailyWeatherList/DailyWeatherList";
 import WeatherAdditionalInfo from "./components/WeatherAdditionalInfo/WeatherAdditionalInfo";
 import {getForecastDays} from "./utils/getForecastDays";
-import CustomButton from "../CustomButton/CustomButton";
+import CustomButton from "../UI/CustomButton/CustomButton";
 import ThemeContext from "../../Contexts/ThemeContext";
 
 const WeatherWindow = () => {

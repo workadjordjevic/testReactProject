@@ -35,14 +35,14 @@
             border-bottom: 3px solid #1a53ff;
         }
     }
+}
 
-    &__tab--selected--light {
-        border-bottom: 3px solid green;
-        color: black;
-    }
+.navbar__tab--selected.navbar__tab--light {
+    border-bottom: 3px solid green;
+    color: black;
+}
 
-    &__tab--selected--dark {
-        border-bottom: 3px solid #1a53ff;
-        color: ghostwhite;
-    }
+.navbar__tab--selected.navbar__tab--dark {
+    border-bottom: 3px solid #1a53ff;
+    color: ghostwhite;
 }

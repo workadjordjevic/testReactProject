@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import "./CustomButton.css";
-import ThemeContext from "../../Contexts/ThemeContext";
+import ThemeContext from "../../../Contexts/ThemeContext";
 
 
 const CustomButton = ({id,onClick,size,variant,text,isDisabled}) => {
@@ -23,7 +23,7 @@ const CustomButton = ({id,onClick,size,variant,text,isDisabled}) => {
     }
 
     return (
-        <button id={id} className={`${size} ${buttonBackgroundColor()}${(isDarkTheme)? "Dark" : "Light"} ${disabledButtonClass()}`} disabled={isDisabled} onClick={onClick}>
+        <button id={id} className={`${size} ${buttonBackgroundColor()} ${(isDarkTheme)? "dark" : "light"} ${disabledButtonClass()}`} disabled={isDisabled} onClick={onClick}>
             <p className="textColorClass">{text}</p>
         </button>
     );

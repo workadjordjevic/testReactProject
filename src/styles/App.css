@@ -9,15 +9,6 @@
     justify-content: center;
 }
 
-.post {
-    display: flex;
-    padding: 15px;
-    border: 2px solid black;
-    margin-top: 15px;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .appWindow {
     width: 100%;
     min-height: 100vh;
