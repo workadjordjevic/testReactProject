@@ -34,9 +34,9 @@ function App() {
 export default App;
 
 // начать изучать redux https://www.youtube.com/watch?v=C0fBnil_Im4&list=PLiZoB8JBsdznQv3kAEvTzDP2qjaUI8Vo7
-// разделить классы addPostButton
 // https://restful-api.dev/
-// добавтить запрос на получение списка сохранённых to-do (get request) (тестовые данные не отображать) (проверка на наличие полей ("fieldname" in object)
-// на добавление отправлять to-do задачу через POST запрост (title,description)
-// при добавление/удалении обновлять список (перезапрос get) (тестовые данные не отображать)
-// удалять to-do (delete request (https://api.restful-api.dev/objects/id-of-to-do-task-to-delete))
+// добавить обновление to-do поста, кнопка edit
+// по кнопке edit передавай title и body поста в postItem, кнопку add post сменить на кнопку save
+// по кнопке save сохранять изменения, то есть отправлять запрос на API "PUT"
+// после обновления поста обновить список to-do
+// очистить форму, и вернуть в прежнее состояние кнопки (она должна стать Add Post)

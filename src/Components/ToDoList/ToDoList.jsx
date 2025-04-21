@@ -26,7 +26,7 @@ const ToDoList = () => {
     async function receivePostData() {
         const requestResult = await fetchData();
 
-        if (typeof (requestResult) === "undefined") {
+        if (!requestResult) {
             return;
         }
 
