@@ -2,33 +2,24 @@ import React, {useState} from 'react';
 import CustomButton from "../UI/CustomButton/CustomButton";
 import CustomInput from "../UI/CustomInput/CustomInput";
 
-const PostForm = ({create}) => {
+const PostForm = ({postIDs,setPostIDs}) => {
 
     const [post, setPost] = useState({title:'', body:''});
 
-    // const addNewPost = (e) => {
-    //     e.preventDefault();
-    //     const newPost = {
-    //         ...post, id: Date.now()
-    //     }
-    //     create(newPost)
-    //     setPost({title:"", body:""})
-    // }
-
-    async function addNewPost() {
-
+    async function addNewPost(e) {
+        e.preventDefault()
         const addNewPostRequest = await fetch('https://api.restful-api.dev/objects', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify(post)
+            body: JSON.stringify({data: post})
         });
 
         setPost({title:"", body:""});
 
         const newPost = await addNewPostRequest.json();
-        console.log("newPost ",newPost);
+        setPostIDs([...postIDs, newPost.id]);
     }
 
     return (
