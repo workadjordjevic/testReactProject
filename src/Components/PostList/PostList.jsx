@@ -4,7 +4,7 @@ import "./PostList.scss";
 import ThemeContext from "../../Contexts/ThemeContext";
 
 const PostList = ({posts ,title, setPostIDs, postIDs}) => {
-    console.log(posts, "posts");
+
     const {isDarkTheme} = useContext(ThemeContext);
     return (
         <div>

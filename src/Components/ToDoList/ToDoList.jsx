@@ -45,7 +45,6 @@ const ToDoList = () => {
         receivePostData();
     },[postIDs])
 
-    console.log("postData",postData,"postData len= ",postData.length);
 
     return (
         <div>
