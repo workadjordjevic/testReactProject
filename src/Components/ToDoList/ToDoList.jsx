@@ -11,14 +11,7 @@ const ToDoList = () => {
     const [postIDs, setPostIDs] = useState([]);
 
      function transformIDsIntoURL(postIDs){
-         let iDsIntoURL;
-         if (postIDs.length >1) {
-             iDsIntoURL = (postIDs.map((post) => `id=${post}&`).join(""));
-         }
-         else {
-             iDsIntoURL = `id=${postIDs[0]}`;
-         }
-         return iDsIntoURL;
+         return (postIDs.map((post) => `id=${post}`).join("&"));
      }
 
     function fetchData() {
@@ -33,18 +26,20 @@ const ToDoList = () => {
     async function receivePostData() {
         const requestResult = await fetchData();
 
-        if (typeof (requestResult) === "undefined" || typeof (requestResult[0]) === "undefined") {
+        if (typeof (requestResult) === "undefined") {
             return;
         }
-        if ("body" in requestResult[0].data) {
-            setPostData([...requestResult]);
+
+        if (!("body" in (requestResult[0]?.data || {}))) {
+            setPostData([]);
+            return;
         }
+        setPostData(requestResult);
     }
 
     useEffect(() => {
         receivePostData();
     },[postIDs])
-
 
     return (
         <div>

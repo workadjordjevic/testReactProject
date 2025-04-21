@@ -6,15 +6,14 @@ import ThemeContext from "../../Contexts/ThemeContext";
 const PostItem = ({setPostIDs, postIDs, number, id, post}) => {
     const {isDarkTheme} = useContext(ThemeContext);
 
-    async function deletePost() {
-        const deletePostURL = "https://api.restful-api.dev/objects/"+id;
-        console.log(deletePostURL , "delete post URL");
-        const deletePostRequest = await fetch(deletePostURL, {
+    async function deletePost(postID) {
+        const deletePostURL = "https://api.restful-api.dev/objects/"+postID;
+
+        await fetch(deletePostURL, {
             method: 'DELETE'
         });
-        const deleteResponse = await deletePostRequest.json();
-        console.log(deleteResponse , "delete response");
-        setPostIDs(postIDs.filter(p => p.id !== postIDs.id));
+
+         setPostIDs(postIDs.filter(p => p !== postID));
     }
 
     return (
@@ -24,7 +23,7 @@ const PostItem = ({setPostIDs, postIDs, number, id, post}) => {
                 <div> {post.body} </div>
             </div>
             <div className="post__btns">
-                <CustomButton  id="deleteButton" text="Delete" size="small" variant="primary" onClick={deletePost} />
+                <CustomButton  id="deleteButton" text="Delete" size="small" variant="primary" onClick={() => deletePost(id)} />
             </div>
         </div>
     );
