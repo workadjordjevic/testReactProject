@@ -2,9 +2,7 @@ import React, {useState} from 'react';
 import CustomButton from "../UI/CustomButton/CustomButton";
 import CustomInput from "../UI/CustomInput/CustomInput";
 
-const PostForm = ({postIDs,setPostIDs}) => {
-
-    const [post, setPost] = useState({title:'', body:''});
+const PostForm = ({postIDs,setPostIDs,post,setPost}) => {
 
     async function addNewPost(e) {
         e.preventDefault()

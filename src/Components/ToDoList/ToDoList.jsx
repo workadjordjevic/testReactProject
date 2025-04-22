@@ -9,6 +9,7 @@ const ToDoList = () => {
     const {isDarkTheme} = useContext(ThemeContext);
     const [postData, setPostData] = useState([]);
     const [postIDs, setPostIDs] = useState([]);
+    const [post, setPost] = useState({title:'', body:''});
 
      function transformIDsIntoURL(postIDs){
          return (postIDs.map((post) => `id=${post}`).join("&"));
@@ -43,7 +44,7 @@ const ToDoList = () => {
 
     return (
         <div>
-            <PostForm setPostIDs={setPostIDs} postIDs={postIDs}/>
+            <PostForm setPostIDs={setPostIDs} postIDs={postIDs} post={post} setPost={setPost} />
                  <hr style={{margin: "15px 0"}}/>
                 <div>
                      <MySelect
@@ -53,7 +54,7 @@ const ToDoList = () => {
                  </div>
                 { postData.length
                     ?
-                    <PostList posts={postData} postIDs={postIDs} setPostIDs={setPostIDs} title={"List"} />
+                    <PostList posts={postData} postIDs={postIDs} setPostIDs={setPostIDs} title={"List"} setPost={setPost} />
                     :
                     <h1 className={`noPostsPlaceholder noPostsPlaceholder--${(isDarkTheme)? "Dark" : "Light"}`}>
                         Nothing here
