@@ -16,26 +16,6 @@ const PostItem = ({setPostIDs, postIDs, number, id, post, setPost}) => {
          setPostIDs(postIDs.filter(p => p !== postID));
     }
 
-    // async function getPostByID(postID) {
-    //     const postByID = "https://api.restful-api.dev/objects/"+postID;
-    //     return fetch(postByID)
-    //         .then(response => response.json())
-    //         .catch(error => {
-    //             console.error('Error fetching weather data:', error);
-    //         });
-    // }
-    //
-    // async function receivePostData() {
-    //     const requestResult = await getPostByID();
-    //
-    //     if (!requestResult) {
-    //         return;
-    //     }
-    //
-    //     console.log(requestResult);
-    //      setPost({body:requestResult.body, title: requestResult.title})
-    // }
-
     function setPostFormData(postID) {
         const pos = (document.getElementById(postID+"title").innerText).indexOf(".");
         const postTitle = (document.getElementById(postID+"title").innerText).substring(pos+1);
