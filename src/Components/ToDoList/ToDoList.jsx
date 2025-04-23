@@ -4,28 +4,17 @@ import PostForm from "../PostForm/PostForm";
 import PostList from "../PostList/PostList";
 import ThemeContext from "../../Contexts/ThemeContext";
 import "./ToDoList.scss";
+import {makeDefaultToDoPost} from "../../utils/todo";
+import {fetchData, transformIDsIntoURL} from "../API/fetchToDoListData";
 
 const ToDoList = () => {
     const {isDarkTheme} = useContext(ThemeContext);
     const [postData, setPostData] = useState([]);
     const [postIDs, setPostIDs] = useState([]);
-    const [post, setPost] = useState({title:'', body:''});
-
-     function transformIDsIntoURL(postIDs){
-         return (postIDs.map((post) => `id=${post}`).join("&"));
-     }
-
-    function fetchData() {
-        const url = `https://api.restful-api.dev/objects?${transformIDsIntoURL(postIDs)}`;
-        return fetch(url)
-            .then(response => response.json())
-            .catch(error => {
-                console.error('Error fetching weather data:', error);
-            });
-    }
+    const [post, setPost] = useState(makeDefaultToDoPost());
 
     async function receivePostData() {
-        const requestResult = await fetchData();
+        const requestResult = await fetchData(postIDs);
 
         if (!requestResult) {
             return;
@@ -44,7 +33,7 @@ const ToDoList = () => {
 
     return (
         <div>
-            <PostForm setPostIDs={setPostIDs} postIDs={postIDs} post={post} setPost={setPost} />
+            <PostForm setPostIDs={setPostIDs} postIDs={postIDs} post={post} setPost={setPost} onUpdatePostList={receivePostData}/>
                  <hr style={{margin: "15px 0"}}/>
                 <div>
                      <MySelect
@@ -54,7 +43,7 @@ const ToDoList = () => {
                  </div>
                 { postData.length
                     ?
-                    <PostList posts={postData} postIDs={postIDs} setPostIDs={setPostIDs} title={"List"} setPost={setPost} />
+                    <PostList posts={postData} postIDs={postIDs} setPostIDs={setPostIDs} title={"List"} setPost={setPost}/>
                     :
                     <h1 className={`noPostsPlaceholder noPostsPlaceholder--${(isDarkTheme)? "Dark" : "Light"}`}>
                         Nothing here

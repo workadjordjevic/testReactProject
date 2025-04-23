@@ -3,7 +3,7 @@ import CustomButton from "../UI/CustomButton/CustomButton";
 import "./PostItem.scss"
 import ThemeContext from "../../Contexts/ThemeContext";
 
-const PostItem = ({setPostIDs, postIDs, number, id, post, setPost}) => {
+const PostItem = ({setPostIDs, postIDs, number, id, post, onEditPost}) => {
     const {isDarkTheme} = useContext(ThemeContext);
 
     async function deletePost(postID) {
@@ -16,23 +16,19 @@ const PostItem = ({setPostIDs, postIDs, number, id, post, setPost}) => {
          setPostIDs(postIDs.filter(p => p !== postID));
     }
 
-    function setPostFormData(postID) {
-        const pos = (document.getElementById(postID+"title").innerText).indexOf(".");
-        const postTitle = (document.getElementById(postID+"title").innerText).substring(pos+1);
-        const postBody = document.getElementById(postID+"body").innerText;
-        console.log(postTitle,postBody);
-         setPost({body:postBody, title: postTitle})
+    function handleEdit() {
+        onEditPost({body:post.body, title:post.title, id});
     }
 
     return (
         <div className={`post post--${(isDarkTheme)? "Dark" : "Light"}`}>
             <div className={`post__item post__item--${(isDarkTheme)? "Dark" : "Light"}`} >
-                <strong id={id+"title"}> {number}.{post.title} </strong>
-                <div id={id+"body"}> {post.body} </div>
+                <strong> {number}.{post.title} </strong>
+                <div> {post.body} </div>
             </div>
             <div className="post__btns">
-                <CustomButton  id="editButton" text="Edit" size="small" variant="primary" onClick={() => setPostFormData(id)}/>
-                <CustomButton  id="deleteButton" text="Delete" size="small" variant="primary" onClick={() => deletePost(id)} />
+                <CustomButton  id="editButton" text="Edit" size="small" variant="primary" onClick={handleEdit}/>
+                <CustomButton  id="deleteButton" text="Delete" size="small" variant="primary" onClick={() => deletePost()} />
             </div>
         </div>
     );
