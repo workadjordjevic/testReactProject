@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import CustomButton from "../UI/CustomButton/CustomButton";
 import CustomInput from "../UI/CustomInput/CustomInput";
+import {makeDefaultToDoPost} from "../../utils/todo";
 
-const PostForm = ({postIDs,setPostIDs}) => {
+const PostForm = ({postIDs,setPostIDs,post,setPost,onUpdatePostList}) => {
 
-    const [post, setPost] = useState({title:'', body:''});
 
     async function addNewPost(e) {
-        e.preventDefault()
+        e.preventDefault();
         const addNewPostRequest = await fetch('https://api.restful-api.dev/objects', {
             method: 'POST',
             headers: {
@@ -20,6 +20,19 @@ const PostForm = ({postIDs,setPostIDs}) => {
 
         const newPost = await addNewPostRequest.json();
         setPostIDs([...postIDs, newPost.id]);
+    }
+
+    async function saveEditedPost(e) {
+        e.preventDefault();
+        const editPostRequest = await fetch('https://api.restful-api.dev/objects/'+post.id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({data: post})
+        });
+        setPost(makeDefaultToDoPost());
+        onUpdatePostList();
     }
 
     return (
@@ -36,7 +49,12 @@ const PostForm = ({postIDs,setPostIDs}) => {
                 type="text"
                 placeholder="Description"
                 style={{width:"100%", padding: "5px 15px", margin:"5px 0"}} />
-            <CustomButton id="addPostButton" text="Add post" size="medium" variant="primary" onClick={addNewPost}/>
+            {   (post.id)
+                ?
+                <CustomButton id="saveButton" text="Save" size="medium" variant="primary" onClick={saveEditedPost}/>
+                :
+                <CustomButton id="addPostButton" text="Add post" size="medium" variant="primary" onClick={addNewPost}/>
+            }
         </form>
     );
 };

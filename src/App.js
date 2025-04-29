@@ -35,8 +35,4 @@ export default App;
 
 // начать изучать redux https://www.youtube.com/watch?v=C0fBnil_Im4&list=PLiZoB8JBsdznQv3kAEvTzDP2qjaUI8Vo7
 // https://restful-api.dev/
-// добавить обновление to-do поста, кнопка edit
-// по кнопке edit передавай title и body поста в postItem, кнопку add post сменить на кнопку save
-// по кнопке save сохранять изменения, то есть отправлять запрос на API "PUT"
-// после обновления поста обновить список to-do
-// очистить форму, и вернуть в прежнее состояние кнопки (она должна стать Add Post)
+//
