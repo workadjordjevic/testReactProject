@@ -2,9 +2,9 @@ import React, {useContext} from 'react';
 import CustomButton from "../UI/CustomButton/CustomButton";
 import "./PostItem.scss"
 import ThemeContext from "../../Contexts/ThemeContext";
-import {createEffect} from "effector";
+import {createEffect, createEvent} from "effector";
 
-const PostItem = ({setPostIDs, postIDs, number, id, post, onEditPost}) => {
+const PostItem = ({setPostIDs, postIDs, number, id, post}) => {
     const {isDarkTheme} = useContext(ThemeContext);
      const deletePostFx = createEffect(async (postID) => {
         const deletePostURL = "https://api.restful-api.dev/objects/"+postID;
@@ -16,9 +16,10 @@ const PostItem = ({setPostIDs, postIDs, number, id, post, onEditPost}) => {
          setPostIDs(postIDs.filter(p => p !== postID));
     })
 
-    function handleEdit() {
-        onEditPost({body:post.body, title:post.title, id});
-    }
+    const handleEdit = createEvent();
+
+ // post.on(handleEdit, (post)) => {{body:post.body, title:post.title, id});
+ //    }
 
     return (
         <div className={`post post--${(isDarkTheme)? "Dark" : "Light"}`}>

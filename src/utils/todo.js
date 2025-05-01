@@ -5,6 +5,8 @@ export function makeDefaultToDoPost() {
 }
 
 export const $postData = createStore([]);
+export const $post = createStore(makeDefaultToDoPost());
+
 export const postIDsUpdate = createEvent();
 export const refetchPostList = createEvent();
 
@@ -53,6 +55,15 @@ export const addNewPostFx = createEffect((post) => {
     })
 })
 
+export const saveEditedPostFx = createEffect(async (post) => {
+    return fetch('https://api.restful-api.dev/objects/'+post.id, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({data: post})
+    });
+})
 // $postData.on(addNewPostFx.doneData, async(postData, response) => {
 //     setPost({title:"", body:""});
 //     const newPost = await response.json();

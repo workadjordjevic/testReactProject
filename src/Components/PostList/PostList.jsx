@@ -10,7 +10,7 @@ const PostList = ({posts ,title, setPostIDs, postIDs, setPost}) => {
         <div>
             <h1 className={`title title--${(isDarkTheme)? "Dark" : "Light"}`} > {title} </h1>
             {   posts.map((post, index)=>
-                <PostItem setPostIDs={setPostIDs} postIDs={postIDs} number={index + 1} id={post.id} post={post.data} key={post.id} onEditPost={setPost}/>)
+                <PostItem setPostIDs={setPostIDs} postIDs={postIDs} number={index + 1} id={post.id} post={post.data} key={post.id}/>)
                 }
         </div>
     );
