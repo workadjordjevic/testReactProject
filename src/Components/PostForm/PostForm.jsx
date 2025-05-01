@@ -6,7 +6,6 @@ import {
     addNewPostFx,
     makeDefaultToDoPost,
     postIDsUpdate,
-    postListUpdate,
     refetchPostList
 } from "../../utils/todo";
 import {createEffect} from "effector";
