@@ -4,36 +4,20 @@ import PostForm from "../PostForm/PostForm";
 import PostList from "../PostList/PostList";
 import ThemeContext from "../../Contexts/ThemeContext";
 import "./ToDoList.scss";
-import {makeDefaultToDoPost} from "../../utils/todo";
-import {fetchData, transformIDsIntoURL} from "../API/fetchToDoListData";
+import {$postData, makeDefaultToDoPost, postIDsUpdate, postListUpdate} from "../../utils/todo";
+import {fetchData} from "../API/fetchToDoListData";
+import {createStore, createEffect, sample, createEvent} from "effector";
+import {useUnit} from "effector-react";
 
 const ToDoList = () => {
     const {isDarkTheme} = useContext(ThemeContext);
-    const [postData, setPostData] = useState([]);
     const [postIDs, setPostIDs] = useState([]);
     const [post, setPost] = useState(makeDefaultToDoPost());
-
-    async function receivePostData() {
-        const requestResult = await fetchData(postIDs);
-
-        if (!requestResult) {
-            return;
-        }
-
-        if (!("body" in (requestResult[0]?.data || {}))) {
-            setPostData([]);
-            return;
-        }
-        setPostData(requestResult);
-    }
-
-    useEffect(() => {
-        receivePostData();
-    },[postIDs])
+    const postData = useUnit($postData);
 
     return (
         <div>
-            <PostForm setPostIDs={setPostIDs} postIDs={postIDs} post={post} setPost={setPost} onUpdatePostList={receivePostData}/>
+            <PostForm setPostIDs={setPostIDs} postIDs={postIDs} post={post} setPost={setPost}/>
                  <hr style={{margin: "15px 0"}}/>
                 <div>
                      <MySelect

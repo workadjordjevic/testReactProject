@@ -2,11 +2,11 @@ import React, {useContext} from 'react';
 import CustomButton from "../UI/CustomButton/CustomButton";
 import "./PostItem.scss"
 import ThemeContext from "../../Contexts/ThemeContext";
+import {createEffect} from "effector";
 
 const PostItem = ({setPostIDs, postIDs, number, id, post, onEditPost}) => {
     const {isDarkTheme} = useContext(ThemeContext);
-
-    async function deletePost(postID) {
+     const deletePostFx = createEffect(async (postID) => {
         const deletePostURL = "https://api.restful-api.dev/objects/"+postID;
 
         await fetch(deletePostURL, {
@@ -14,7 +14,7 @@ const PostItem = ({setPostIDs, postIDs, number, id, post, onEditPost}) => {
         });
 
          setPostIDs(postIDs.filter(p => p !== postID));
-    }
+    })
 
     function handleEdit() {
         onEditPost({body:post.body, title:post.title, id});
@@ -28,7 +28,7 @@ const PostItem = ({setPostIDs, postIDs, number, id, post, onEditPost}) => {
             </div>
             <div className="post__btns">
                 <CustomButton  id="editButton" text="Edit" size="small" variant="primary" onClick={handleEdit}/>
-                <CustomButton  id="deleteButton" text="Delete" size="small" variant="primary" onClick={() => deletePost()} />
+                <CustomButton  id="deleteButton" text="Delete" size="small" variant="primary" onClick={() => deletePostFx(id)} />
             </div>
         </div>
     );

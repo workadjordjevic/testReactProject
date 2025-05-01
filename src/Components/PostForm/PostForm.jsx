@@ -1,28 +1,37 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import CustomButton from "../UI/CustomButton/CustomButton";
 import CustomInput from "../UI/CustomInput/CustomInput";
-import {makeDefaultToDoPost} from "../../utils/todo";
+import {
+    $postData,
+    addNewPostFx,
+    makeDefaultToDoPost,
+    postIDsUpdate,
+    postListUpdate,
+    refetchPostList
+} from "../../utils/todo";
+import {createEffect} from "effector";
 
 const PostForm = ({postIDs,setPostIDs,post,setPost,onUpdatePostList}) => {
 
-
-    async function addNewPost(e) {
+    const createNewPost =  (e) => {
         e.preventDefault();
-        const addNewPostRequest = await fetch('https://api.restful-api.dev/objects', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify({data: post})
-        });
-
-        setPost({title:"", body:""});
-
-        const newPost = await addNewPostRequest.json();
-        setPostIDs([...postIDs, newPost.id]);
+        addNewPostFx(post)
     }
 
-    async function saveEditedPost(e) {
+    $postData.on(addNewPostFx.doneData, async(postData, response) => {
+        setPost(makeDefaultToDoPost());
+        const newPost = await response.json();
+        setPostIDs([...postIDs, newPost.id]);
+    })
+
+    //  $postData.on переписать на 2 on, для пост и постИД сторов, возвращать из их редюсера то что сейчас передаём
+    //  в setPost setPostIDs
+
+    useEffect(() => {
+        postIDsUpdate(postIDs);
+    }, [postIDs]);
+
+    const saveEditedPostFx = createEffect(async (e) => {
         e.preventDefault();
         const editPostRequest = await fetch('https://api.restful-api.dev/objects/'+post.id, {
             method: 'PUT',
@@ -32,8 +41,8 @@ const PostForm = ({postIDs,setPostIDs,post,setPost,onUpdatePostList}) => {
             body: JSON.stringify({data: post})
         });
         setPost(makeDefaultToDoPost());
-        onUpdatePostList();
-    }
+        refetchPostList(postIDs);
+    })
 
     return (
         <form>
@@ -51,9 +60,9 @@ const PostForm = ({postIDs,setPostIDs,post,setPost,onUpdatePostList}) => {
                 style={{width:"100%", padding: "5px 15px", margin:"5px 0"}} />
             {   (post.id)
                 ?
-                <CustomButton id="saveButton" text="Save" size="medium" variant="primary" onClick={saveEditedPost}/>
+                <CustomButton id="saveButton" text="Save" size="medium" variant="primary" onClick={saveEditedPostFx}/>
                 :
-                <CustomButton id="addPostButton" text="Add post" size="medium" variant="primary" onClick={addNewPost}/>
+                <CustomButton id="addPostButton" text="Add post" size="medium" variant="primary" onClick={createNewPost}/>
             }
         </form>
     );
