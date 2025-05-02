@@ -4,14 +4,17 @@ import CustomInput from "../UI/CustomInput/CustomInput";
 import {
     $post,
     $postData,
-    addNewPostFx,
+    addNewPostFx, addPostIDToPostIDs,
     makeDefaultToDoPost,
     postIDsUpdate,
     refetchPostList, saveEditedPostFx
 } from "../../utils/todo";
-import {createEffect, sample} from "effector";
+import {createEffect, createEvent, sample} from "effector";
 
-const PostForm = ({postIDs,setPostIDs,post,onUpdatePostList}) => {
+const PostForm = ({postIDs,post}) => {
+
+    const postTitleChange = createEvent();
+    const postBodyChange = createEvent();
 
     const createNewPost =  (e) => {
         e.preventDefault();
@@ -21,10 +24,10 @@ const PostForm = ({postIDs,setPostIDs,post,onUpdatePostList}) => {
     $postData.on(addNewPostFx.doneData, async(postData, response) => {
         // setPost(makeDefaultToDoPost());
         const newPost = await response.json();
-        setPostIDs([...postIDs, newPost.id]);
+        addPostIDToPostIDs(newPost.id);
     })
 
-    $post.on(addNewPostFx.doneData, async(_, newPost) => makeDefaultToDoPost())
+    $post.reset(addNewPostFx.doneData);
 
     //  $postData.on переписать на 2 on, для пост и постИД сторов, возвращать из их редюсера то что сейчас передаём
     //  в setPost setPostIDs
@@ -38,24 +41,22 @@ const PostForm = ({postIDs,setPostIDs,post,onUpdatePostList}) => {
         saveEditedPostFx(post)
     }
 
-    $post.on(saveEditedPostFx.doneData, async(_,newPost) => makeDefaultToDoPost())
+    $post.reset(saveEditedPostFx.doneData);
 
-    sample({
-        clock: post,
-        target: refetchPostList(postIDs),
-    })
+    $post.on(postTitleChange,(oldPost,newTitle) => ({...oldPost, title: newTitle}));
+    $post.on(postBodyChange,(oldPost,newBody) => ({...oldPost, body: newBody}));
 
     return (
         <form>
             <CustomInput
                 value={post.title}
-                // onChange={(e) => setPost({...post, title: e.target.value})} // ???
+                onChange={(e) => postTitleChange(e.target.value)}
                 type="text"
                 placeholder="Title"
                 style={{width:"100%", padding: "5px 15px", margin:"5px 0"}} />
             <CustomInput
                 value={post.body}
-                // onChange={(e) => setPost({...post, body: e.target.value})} // ???
+                onChange={(e) => postBodyChange(e.target.value)}
                 type="text"
                 placeholder="Description"
                 style={{width:"100%", padding: "5px 15px", margin:"5px 0"}} />

@@ -4,21 +4,18 @@ import PostForm from "../PostForm/PostForm";
 import PostList from "../PostList/PostList";
 import ThemeContext from "../../Contexts/ThemeContext";
 import "./ToDoList.scss";
-import {$post, $postData, makeDefaultToDoPost, postIDsUpdate, postListUpdate} from "../../utils/todo";
+import {$post, $postData, $postIDs, makeDefaultToDoPost, postIDsUpdate, postListUpdate} from "../../utils/todo";
 import {fetchData} from "../API/fetchToDoListData";
 import {createStore, createEffect, sample, createEvent} from "effector";
 import {useUnit} from "effector-react";
 
 const ToDoList = () => {
     const {isDarkTheme} = useContext(ThemeContext);
-    const [postIDs, setPostIDs] = useState([]);
-    // const [post, setPost] = useState(makeDefaultToDoPost());
-    const postData = useUnit($postData);
-    const post = useUnit($post)
+    const {$postData:postData,$post:post,$postIDs:postIDs} = useUnit({$postData, $post, $postIDs});
 
     return (
         <div>
-            <PostForm setPostIDs={setPostIDs} postIDs={postIDs} post={post}/>
+            <PostForm postIDs={postIDs} post={post}/>
                  <hr style={{margin: "15px 0"}}/>
                 <div>
                      <MySelect
@@ -28,7 +25,7 @@ const ToDoList = () => {
                  </div>
                 { postData.length
                     ?
-                    <PostList posts={postData} postIDs={postIDs} setPostIDs={setPostIDs} title={"List"}/>
+                    <PostList posts={postData} postIDs={postIDs} title={"List"}/>
                     :
                     <h1 className={`noPostsPlaceholder noPostsPlaceholder--${(isDarkTheme)? "Dark" : "Light"}`}>
                         Nothing here
