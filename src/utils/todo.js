@@ -12,6 +12,9 @@ export const postIDsUpdate = createEvent();
 export const refetchPostList = createEvent();
 export const deletePostIDToPostIDs = createEvent();
 export const addPostIDToPostIDs = createEvent();
+export const postTitleChange = createEvent();
+export const postBodyChange = createEvent();
+export const handleEdit = createEvent();
 
 function transformIDsIntoURL(postIDs){
     return (postIDs.map((post) => `id=${post}`).join("&"));
@@ -57,12 +60,24 @@ export const saveEditedPostFx = createEffect(async (post) => {
     });
 })
 
+export const deletePostFx = createEffect(async (postID) => {
+    const deletePostURL = "https://api.restful-api.dev/objects/"+postID;
+
+    return fetch(deletePostURL, {
+        method: 'DELETE'
+    });
+})
+
+sample({
+    clock:deletePostFx.doneData,
+    target:deletePostIDToPostIDs,
+})
+
 $postIDs.on(deletePostIDToPostIDs,(postIDs, iDToDelete) => postIDs.filter(p => p !== iDToDelete))
 $postIDs.on(addPostIDToPostIDs, (postIDs, newPostID) => [...postIDs, newPostID]);
 
 sample({
     clock: postIDsUpdate,
-    // filter: (postIDs) => !!postIDs.length,
     target: fetchDataFx,
 })
 
@@ -76,26 +91,3 @@ sample({
     source: $postIDs,
     target: fetchDataFx,
 })
-
-// $postData.on(addNewPostFx.doneData, async(postData, response) => {
-//     setPost({title:"", body:""});
-//     const newPost = await response.json();
-//     setPostIDs([...postIDs, newPost.id]);
-// })
-
-
-// async function addNewPost(e) {
-//     e.preventDefault();
-//     const addNewPostRequest = await fetch('https://api.restful-api.dev/objects', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json;charset=utf-8'
-//         },
-//         body: JSON.stringify({data: post})
-//     });
-//
-//     setPost({title:"", body:""});
-//
-//     const newPost = await addNewPostRequest.json();
-//     setPostIDs([...postIDs, newPost.id]);
-// }

@@ -1,12 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import MySelect from "../UI/select/MySelect";
 import PostForm from "../PostForm/PostForm";
 import PostList from "../PostList/PostList";
 import ThemeContext from "../../Contexts/ThemeContext";
 import "./ToDoList.scss";
-import {$post, $postData, $postIDs, makeDefaultToDoPost, postIDsUpdate, postListUpdate} from "../../utils/todo";
-import {fetchData} from "../API/fetchToDoListData";
-import {createStore, createEffect, sample, createEvent} from "effector";
+import {$post, $postData, $postIDs} from "../../utils/todo";
 import {useUnit} from "effector-react";
 
 const ToDoList = () => {

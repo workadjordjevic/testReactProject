@@ -2,21 +2,23 @@ import React, {useContext} from 'react';
 import CustomButton from "../UI/CustomButton/CustomButton";
 import "./PostItem.scss"
 import ThemeContext from "../../Contexts/ThemeContext";
-import {createEffect, createEvent} from "effector";
-import {$post, deletePostIDToPostIDs} from "../../utils/todo";
+import {$post, deletePostFx, handleEdit} from "../../utils/todo";
 
 const PostItem = ({ postIDs, number, id, post}) => {
     const {isDarkTheme} = useContext(ThemeContext);
-     const deletePostFx = createEffect(async (postID) => {
-        const deletePostURL = "https://api.restful-api.dev/objects/"+postID;
 
-        await fetch(deletePostURL, {
-            method: 'DELETE'
-        });
-        deletePostIDToPostIDs(postID);
-    })
+    //  const deletePostFx = createEffect(async (postID) => {
+    //     const deletePostURL = "https://api.restful-api.dev/objects/"+postID;
+    //
+    //     let res = await fetch(deletePostURL, {
+    //         method: 'DELETE'
+    //     });
+    //
+    //     let response = await res.json();
+    //     console.log(response);
+    //     deletePostIDToPostIDs(postID);
+    // })
 
-    const handleEdit = createEvent();
     $post.on(handleEdit, (_, editedPost) => editedPost);
 
     return (

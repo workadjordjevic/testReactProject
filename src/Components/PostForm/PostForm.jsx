@@ -2,19 +2,12 @@ import React, {useEffect} from 'react';
 import CustomButton from "../UI/CustomButton/CustomButton";
 import CustomInput from "../UI/CustomInput/CustomInput";
 import {
-    $post,
-    $postData,
-    addNewPostFx, addPostIDToPostIDs,
-    makeDefaultToDoPost,
-    postIDsUpdate,
-    refetchPostList, saveEditedPostFx
+    $post, $postData,
+    addNewPostFx, addPostIDToPostIDs, postBodyChange,
+    postIDsUpdate, postTitleChange, saveEditedPostFx
 } from "../../utils/todo";
-import {createEffect, createEvent, sample} from "effector";
 
 const PostForm = ({postIDs,post}) => {
-
-    const postTitleChange = createEvent();
-    const postBodyChange = createEvent();
 
     const createNewPost =  (e) => {
         e.preventDefault();
@@ -22,15 +15,11 @@ const PostForm = ({postIDs,post}) => {
     }
 
     $postData.on(addNewPostFx.doneData, async(postData, response) => {
-        // setPost(makeDefaultToDoPost());
         const newPost = await response.json();
         addPostIDToPostIDs(newPost.id);
     })
 
     $post.reset(addNewPostFx.doneData);
-
-    //  $postData.on переписать на 2 on, для пост и постИД сторов, возвращать из их редюсера то что сейчас передаём
-    //  в setPost setPostIDs
 
     useEffect(() => {
         postIDsUpdate(postIDs);
