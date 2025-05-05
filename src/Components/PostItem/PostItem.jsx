@@ -2,12 +2,10 @@ import React, {useContext} from 'react';
 import CustomButton from "../UI/CustomButton/CustomButton";
 import "./PostItem.scss"
 import ThemeContext from "../../Contexts/ThemeContext";
-import {$post, deletePostFx, handleEdit} from "../../utils/todo";
+import {deletePostFx, handleEdit} from "../../utils/todo";
 
-const PostItem = ({ postIDs, number, id, post}) => {
+const PostItem = ({number, id, post}) => {
     const {isDarkTheme} = useContext(ThemeContext);
-
-    $post.on(handleEdit, (_, editedPost) => editedPost);
 
     return (
         <div className={`post post--${(isDarkTheme)? "Dark" : "Light"}`}>

@@ -48,6 +48,10 @@ export const addNewPostFx = createEffect((post) => {
     }).then(response => response.json()).catch(error => error);
 })
 
+$post.reset(addNewPostFx.doneData);
+$post.on(postTitleChange,(oldPost,newTitle) => ({...oldPost, title: newTitle}));
+$post.on(postBodyChange,(oldPost,newBody) => ({...oldPost, body: newBody}));
+
 export const saveEditedPostFx = createEffect(async (post) => {
     return fetch('https://api.restful-api.dev/objects/'+post.id, {
         method: 'PUT',
@@ -57,6 +61,11 @@ export const saveEditedPostFx = createEffect(async (post) => {
         body: JSON.stringify({data: post})
     });
 })
+
+$post.reset(saveEditedPostFx.doneData);
+
+
+$post.on(handleEdit, (_, editedPost) => editedPost);
 
 export const deletePostFx = createEffect(async (postID) => {
     const deletePostURL = "https://api.restful-api.dev/objects/"+postID;

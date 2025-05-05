@@ -35,9 +35,4 @@ export default App;
 
 // начать изучать redux https://www.youtube.com/watch?v=C0fBnil_Im4&list=PLiZoB8JBsdznQv3kAEvTzDP2qjaUI8Vo7
 // https://restful-api.dev/
-// реализовать все запросы к серверу через эффектор
-// по подобию createNewPostFx переделать savePost и deletePost. В эффекте только фетч, обработка превент дефолта
-// в отдельную ф-ию, в ней же вызов эффекта. Все операции после фетча обработать в .on Fx.doneData
-// postIDs, post переделать на стор
-// переделать семпл для postIDsUpdate, убрать клок, в качестве сорса => стор postIDs
 // вся работа эффектора в to-do.js

@@ -1,30 +1,22 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import CustomButton from "../UI/CustomButton/CustomButton";
 import CustomInput from "../UI/CustomInput/CustomInput";
 import {
-    $post, $postData,
     addNewPostFx, postBodyChange,
-    postIDsUpdate, postTitleChange, saveEditedPostFx
+    postTitleChange, saveEditedPostFx
 } from "../../utils/todo";
 
-const PostForm = ({postIDs,post}) => {
+const PostForm = ({post}) => {
 
     const createNewPost =  (e) => {
         e.preventDefault();
         addNewPostFx(post)
     }
 
-    $post.reset(addNewPostFx.doneData);
-
     const saveChangesInEditedPost = (e) => {
         e.preventDefault();
         saveEditedPostFx(post)
     }
-
-    $post.reset(saveEditedPostFx.doneData);
-
-    $post.on(postTitleChange,(oldPost,newTitle) => ({...oldPost, title: newTitle}));
-    $post.on(postBodyChange,(oldPost,newBody) => ({...oldPost, body: newBody}));
 
     return (
         <form>
