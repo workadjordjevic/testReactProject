@@ -9,9 +9,7 @@ export const $post = createStore(makeDefaultToDoPost());
 export const $postIDs = createStore([]);
 
 export const postIDsUpdate = createEvent();
-export const refetchPostList = createEvent();
 export const deletePostIDToPostIDs = createEvent();
-export const addPostIDToPostIDs = createEvent();
 export const postTitleChange = createEvent();
 export const postBodyChange = createEvent();
 export const handleEdit = createEvent();
@@ -47,7 +45,7 @@ export const addNewPostFx = createEffect((post) => {
             'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify({data: post})
-    })
+    }).then(response => response.json()).catch(error => error);
 })
 
 export const saveEditedPostFx = createEffect(async (post) => {
@@ -74,15 +72,11 @@ sample({
 })
 
 $postIDs.on(deletePostIDToPostIDs,(postIDs, iDToDelete) => postIDs.filter(p => p !== iDToDelete))
-$postIDs.on(addPostIDToPostIDs, (postIDs, newPostID) => [...postIDs, newPostID]);
+
+$postIDs.on(addNewPostFx.doneData, (postIDs, newPost) => [...postIDs, newPost.id])
 
 sample({
-    clock: postIDsUpdate,
-    target: fetchDataFx,
-})
-
-sample({
-    clock: refetchPostList,
+    clock: $postIDs,
     target: fetchDataFx,
 })
 

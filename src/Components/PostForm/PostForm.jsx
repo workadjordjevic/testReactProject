@@ -3,7 +3,7 @@ import CustomButton from "../UI/CustomButton/CustomButton";
 import CustomInput from "../UI/CustomInput/CustomInput";
 import {
     $post, $postData,
-    addNewPostFx, addPostIDToPostIDs, postBodyChange,
+    addNewPostFx, postBodyChange,
     postIDsUpdate, postTitleChange, saveEditedPostFx
 } from "../../utils/todo";
 
@@ -14,16 +14,7 @@ const PostForm = ({postIDs,post}) => {
         addNewPostFx(post)
     }
 
-    $postData.on(addNewPostFx.doneData, async(postData, response) => {
-        const newPost = await response.json();
-        addPostIDToPostIDs(newPost.id);
-    })
-
     $post.reset(addNewPostFx.doneData);
-
-    useEffect(() => {
-        postIDsUpdate(postIDs);
-    }, [postIDs]);
 
     const saveChangesInEditedPost = (e) => {
         e.preventDefault();
@@ -51,9 +42,9 @@ const PostForm = ({postIDs,post}) => {
                 style={{width:"100%", padding: "5px 15px", margin:"5px 0"}} />
             {   (post.id)
                 ?
-                <CustomButton id="saveButton" text="Save" size="medium" variant="primary" onClick={saveChangesInEditedPost}/>
+                <CustomButton id="saveButton" text="Save" size="medium" variant="primary" type="submit" onClick={saveChangesInEditedPost}/>
                 :
-                <CustomButton id="addPostButton" text="Add post" size="medium" variant="primary" onClick={createNewPost}/>
+                <CustomButton id="addPostButton" text="Add post" size="medium" variant="primary" type="submit" onClick={createNewPost}/>
             }
         </form>
     );

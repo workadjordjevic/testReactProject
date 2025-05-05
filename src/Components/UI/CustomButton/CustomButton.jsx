@@ -3,7 +3,7 @@ import "./CustomButton.css";
 import ThemeContext from "../../../Contexts/ThemeContext";
 
 
-const CustomButton = ({id,onClick,size,variant,text,isDisabled}) => {
+const CustomButton = ({id,onClick,size,variant,text,isDisabled,type}) => {
 
     const {isDarkTheme} = useContext(ThemeContext);
 
@@ -23,7 +23,7 @@ const CustomButton = ({id,onClick,size,variant,text,isDisabled}) => {
     }
 
     return (
-        <button id={id} className={`${size} ${buttonBackgroundColor()} ${(isDarkTheme)? "dark" : "light"} ${disabledButtonClass()}`} disabled={isDisabled} onClick={onClick}>
+        <button id={id} className={`${size} ${buttonBackgroundColor()} ${(isDarkTheme)? "dark" : "light"} ${disabledButtonClass()}`} disabled={isDisabled} onClick={onClick} type={type}>
             <p className="textColorClass">{text}</p>
         </button>
     );
