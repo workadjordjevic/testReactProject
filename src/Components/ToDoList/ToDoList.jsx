@@ -9,7 +9,7 @@ import {useUnit} from "effector-react";
 
 const ToDoList = () => {
     const {isDarkTheme} = useContext(ThemeContext);
-    const {$postData:postData,$post:post,$postIDs:postIDs} = useUnit({$postData, $post, $postIDs});
+    const {$postData:postData,$post:post} = useUnit({$postData, $post, $postIDs});
 
     return (
         <div>
