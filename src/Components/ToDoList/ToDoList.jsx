@@ -23,7 +23,7 @@ const ToDoList = () => {
                  </div>
                 { postData.length
                     ?
-                    <PostList posts={postData} postIDs={postIDs} title={"List"}/>
+                    <PostList posts={postData} title={"List"}/>
                     :
                     <h1 className={`noPostsPlaceholder noPostsPlaceholder--${(isDarkTheme)? "Dark" : "Light"}`}>
                         Nothing here

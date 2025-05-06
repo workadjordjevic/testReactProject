@@ -55,14 +55,13 @@ export const deletePostFx = createEffect(async (postID) => {
 })
 
 $postData.reset(fetchDataFx.fail);
-$post.reset([addNewPostFx.doneData,saveEditedPostFx.doneData]);
-
 $postData.on(fetchDataFx.doneData, (postData, responseData) => { // fail??
     if (!("body" in (responseData[0]?.data || {}))) {
         return [];
     }
     return responseData;
 })
+$post.reset([addNewPostFx.doneData,saveEditedPostFx.doneData]);
 $post.on(postTitleChange,(oldPost,newTitle) => ({...oldPost, title: newTitle}));
 $post.on(postBodyChange,(oldPost,newBody) => ({...oldPost, body: newBody}));
 $post.on(handleEdit, (_, editedPost) => editedPost);
