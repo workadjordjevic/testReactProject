@@ -4,6 +4,10 @@ export function makeDefaultToDoPost() {
     return {title:'', body:''}
 }
 
+function transformIDsIntoURL(postIDs){
+    return (postIDs.map((post) => `id=${post}`).join("&"));
+}
+
 export const $postData = createStore([]);
 export const $post = createStore(makeDefaultToDoPost());
 export const $postIDs = createStore([]);
@@ -12,10 +16,6 @@ export const deletePostIDToPostIDs = createEvent();
 export const postTitleChange = createEvent();
 export const postBodyChange = createEvent();
 export const handleEdit = createEvent();
-
-function transformIDsIntoURL(postIDs){
-    return (postIDs.map((post) => `id=${post}`).join("&"));
-}
 
 const fetchDataFx = createEffect(async (postIDs) => {
     const url = `https://api.restful-api.dev/objects?${transformIDsIntoURL(postIDs)}`;

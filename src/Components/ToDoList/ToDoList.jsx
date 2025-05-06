@@ -4,12 +4,12 @@ import PostForm from "../PostForm/PostForm";
 import PostList from "../PostList/PostList";
 import ThemeContext from "../../Contexts/ThemeContext";
 import "./ToDoList.scss";
-import {$post, $postData, $postIDs} from "../../utils/todo";
+import {$post, $postData} from "../../utils/todo";
 import {useUnit} from "effector-react";
 
 const ToDoList = () => {
     const {isDarkTheme} = useContext(ThemeContext);
-    const {$postData:postData,$post:post} = useUnit({$postData, $post, $postIDs});
+    const {$postData:postData,$post:post} = useUnit({$postData, $post});
 
     return (
         <div>
