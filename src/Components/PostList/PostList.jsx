@@ -3,7 +3,7 @@ import PostItem from "../PostItem/PostItem";
 import "./PostList.scss";
 import ThemeContext from "../../Contexts/ThemeContext";
 
-const PostList = ({posts ,title, postIDs}) => {
+const PostList = ({posts ,title}) => {
 
     const {isDarkTheme} = useContext(ThemeContext);
     return (
