@@ -14,7 +14,7 @@ const PostItem = ({number, id, post}) => {
                 <div> {post.body} </div>
             </div>
             <div className="post__btns">
-                <CustomButton  id="editButton" text="Edit" size="small" variant="primary" onClick={() => handleEdit({body:post.body, title:post.title, id})}/>
+                <CustomButton  id="editButton" text="Edit" size="small" variant="primary" onClick={() => handleEdit({...post, id})}/>
                 <CustomButton  id="deleteButton" text="Delete" size="small" variant="primary" onClick={() => deletePostFx(id)} />
             </div>
         </div>

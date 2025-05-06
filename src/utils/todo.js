@@ -8,7 +8,6 @@ export const $postData = createStore([]);
 export const $post = createStore(makeDefaultToDoPost());
 export const $postIDs = createStore([]);
 
-export const postIDsUpdate = createEvent();
 export const deletePostIDToPostIDs = createEvent();
 export const postTitleChange = createEvent();
 export const postBodyChange = createEvent();
@@ -27,17 +26,6 @@ const fetchDataFx = createEffect(async (postIDs) => {
         });
 });
 
-$postData.on(fetchDataFx.doneData, (postData, responseData) => { // fail??
-    if (!("body" in (responseData[0]?.data || {}))) {
-        return [];
-    }
-    return responseData;
-})
-
-$postData.on(fetchDataFx.fail, () => {
-    return [];
-})
-
 export const addNewPostFx = createEffect((post) => {
     return fetch ('https://api.restful-api.dev/objects', {
         method: 'POST',
@@ -47,10 +35,6 @@ export const addNewPostFx = createEffect((post) => {
         body: JSON.stringify({data: post})
     }).then(response => response.json()).catch(error => error);
 })
-
-$post.reset(addNewPostFx.doneData);
-$post.on(postTitleChange,(oldPost,newTitle) => ({...oldPost, title: newTitle}));
-$post.on(postBodyChange,(oldPost,newBody) => ({...oldPost, body: newBody}));
 
 export const saveEditedPostFx = createEffect(async (post) => {
     return fetch('https://api.restful-api.dev/objects/'+post.id, {
@@ -62,11 +46,6 @@ export const saveEditedPostFx = createEffect(async (post) => {
     });
 })
 
-$post.reset(saveEditedPostFx.doneData);
-
-
-$post.on(handleEdit, (_, editedPost) => editedPost);
-
 export const deletePostFx = createEffect(async (postID) => {
     const deletePostURL = "https://api.restful-api.dev/objects/"+postID;
 
@@ -75,14 +54,25 @@ export const deletePostFx = createEffect(async (postID) => {
     });
 })
 
+$postData.reset(fetchDataFx.fail);
+$post.reset([addNewPostFx.doneData,saveEditedPostFx.doneData]);
+
+$postData.on(fetchDataFx.doneData, (postData, responseData) => { // fail??
+    if (!("body" in (responseData[0]?.data || {}))) {
+        return [];
+    }
+    return responseData;
+})
+$post.on(postTitleChange,(oldPost,newTitle) => ({...oldPost, title: newTitle}));
+$post.on(postBodyChange,(oldPost,newBody) => ({...oldPost, body: newBody}));
+$post.on(handleEdit, (_, editedPost) => editedPost);
+$postIDs.on(deletePostIDToPostIDs,(postIDs, iDToDelete) => postIDs.filter(p => p !== iDToDelete));
+$postIDs.on(addNewPostFx.doneData, (postIDs, newPost) => [...postIDs, newPost.id]);
+
 sample({
     clock:deletePostFx.doneData,
     target:deletePostIDToPostIDs,
 })
-
-$postIDs.on(deletePostIDToPostIDs,(postIDs, iDToDelete) => postIDs.filter(p => p !== iDToDelete))
-
-$postIDs.on(addNewPostFx.doneData, (postIDs, newPost) => [...postIDs, newPost.id])
 
 sample({
     clock: $postIDs,

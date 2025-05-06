@@ -13,7 +13,7 @@ const ToDoList = () => {
 
     return (
         <div>
-            <PostForm postIDs={postIDs} post={post}/>
+            <PostForm post={post}/>
                  <hr style={{margin: "15px 0"}}/>
                 <div>
                      <MySelect

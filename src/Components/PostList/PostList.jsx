@@ -10,8 +10,8 @@ const PostList = ({posts ,title, postIDs}) => {
         <div>
             <h1 className={`title title--${(isDarkTheme)? "Dark" : "Light"}`} > {title} </h1>
             {   posts.map((post, index)=>
-                <PostItem postIDs={postIDs} number={index + 1} id={post.id} post={post.data} key={post.id}/>)
-                }
+                <PostItem number={index + 1} id={post.id} post={post.data} key={post.id}/>)
+            }
         </div>
     );
 };
