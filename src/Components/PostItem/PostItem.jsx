@@ -2,23 +2,10 @@ import React, {useContext} from 'react';
 import CustomButton from "../UI/CustomButton/CustomButton";
 import "./PostItem.scss"
 import ThemeContext from "../../Contexts/ThemeContext";
+import {deletePostFx, handleEdit} from "../../utils/todo";
 
-const PostItem = ({setPostIDs, postIDs, number, id, post, onEditPost}) => {
+const PostItem = ({number, id, post}) => {
     const {isDarkTheme} = useContext(ThemeContext);
-
-    async function deletePost(postID) {
-        const deletePostURL = "https://api.restful-api.dev/objects/"+postID;
-
-        await fetch(deletePostURL, {
-            method: 'DELETE'
-        });
-
-         setPostIDs(postIDs.filter(p => p !== postID));
-    }
-
-    function handleEdit() {
-        onEditPost({body:post.body, title:post.title, id});
-    }
 
     return (
         <div className={`post post--${(isDarkTheme)? "Dark" : "Light"}`}>
@@ -27,8 +14,8 @@ const PostItem = ({setPostIDs, postIDs, number, id, post, onEditPost}) => {
                 <div> {post.body} </div>
             </div>
             <div className="post__btns">
-                <CustomButton  id="editButton" text="Edit" size="small" variant="primary" onClick={handleEdit}/>
-                <CustomButton  id="deleteButton" text="Delete" size="small" variant="primary" onClick={() => deletePost()} />
+                <CustomButton  id="editButton" text="Edit" size="small" variant="primary" onClick={() => handleEdit({...post, id})}/>
+                <CustomButton  id="deleteButton" text="Delete" size="small" variant="primary" onClick={() => deletePostFx(id)} />
             </div>
         </div>
     );
