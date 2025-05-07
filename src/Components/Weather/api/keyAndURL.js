@@ -6,15 +6,15 @@ const currentWeather = "/current.json";
 const forecastWeather = "/forecast.json";
 const forecast = "/forecast.json";
 
-export function fetchWeather(city) {
-    const url = `${baseURL}${currentWeather}?key=${myKey}&q=${city}&aqi=no`;
-
-    return fetch(url)
-        .then(response => response.json())
-        .catch(error => {
-             console.error('Error fetching weather data:', error);
-        });
-    }
+// export function fetchWeather(city) {
+//     const url = `${baseURL}${currentWeather}?key=${myKey}&q=${city}&aqi=no`;
+//
+//     return fetch(url)
+//         .then(response => response.json())
+//         .catch(error => {
+//              console.error('Error fetching weather data:', error);
+//         });
+//     }
 
 export function fetchWeatherForecast(city) {
     const url = `${baseURL}${forecastWeather}?key=${myKey}&q=${city}&days=3`;

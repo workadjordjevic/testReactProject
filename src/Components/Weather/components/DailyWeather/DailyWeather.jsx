@@ -14,4 +14,3 @@ const DailyWeather = (props) => {
 };
 
 export default DailyWeather;
-

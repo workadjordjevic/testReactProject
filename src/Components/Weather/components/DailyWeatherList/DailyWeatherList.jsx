@@ -3,8 +3,9 @@ import DailyWeather from "../DailyWeather/DailyWeather";
 import "./DailyWeatherList.css";
 import {getWeekDayNameByDate} from "../../utils/dateHelpers";
 import ThemeContext from "../../../../Contexts/ThemeContext";
+import {onCardClick} from "../../../../utils/weather";
 
-const DailyWeatherList = ({forecastDay,onCardClick}) => {
+const DailyWeatherList = ({forecastDay}) => {
 
     const {isDarkTheme} = useContext(ThemeContext);
 
