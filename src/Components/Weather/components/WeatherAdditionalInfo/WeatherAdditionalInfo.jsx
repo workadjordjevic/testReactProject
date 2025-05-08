@@ -1,10 +1,13 @@
 import React, {useContext} from 'react';
 import ThemeContext from "../../../../Contexts/ThemeContext";
+import {$currentCard} from "../../../../utils/weather";
+import {useUnit} from "effector-react";
 
-const WeatherAdditionalInfo = ({currentCard}) => {
+const WeatherAdditionalInfo = () => {
 
     const {isDarkTheme} = useContext(ThemeContext);
     const cardElementClassName = `cardElement cardElement${(isDarkTheme)? "Dark" : "Light"}`;
+    const currentCard = useUnit($currentCard);
 
     if (!currentCard) {
         return null;

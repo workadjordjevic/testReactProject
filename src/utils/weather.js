@@ -25,18 +25,11 @@ export const fetchWeatherForecastFx = createEffect(async (city) => {
         });
 })
 
-$serverDataForecast.on(fetchWeatherForecastFx.doneData, (_, responseData) => {
-    return responseData;
-});
+$serverDataForecast.on(fetchWeatherForecastFx.doneData, (_, responseData) => responseData);
 $forecastDays.on(getDaysFromObj,(_,serverDataForecast) => serverDataForecast?.forecast?.forecastday);
 $city.on(changeCity,(_,newCity)=> newCity);
 $currentCard.on(onCardClick,(_,selectedDailyCard) => selectedDailyCard);
-$currentCard.on(changeCurrentCardOnChangeCity,(currentCard,forecastDays) => {
-        if (currentCard) {
-            return forecastDays[0];
-        }
-        return null;
-    })
+$currentCard.on(changeCurrentCardOnChangeCity,(currentCard,forecastDays) => currentCard? forecastDays[0] : null);
 
 sample({
     clock:$serverDataForecast,

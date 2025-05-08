@@ -6,15 +6,14 @@ import WeatherAdditionalInfo from "./components/WeatherAdditionalInfo/WeatherAdd
 import CustomButton from "../UI/CustomButton/CustomButton";
 import ThemeContext from "../../Contexts/ThemeContext";
 import {
-    $city, $currentCard,
-    $forecastDays,
-    changeCity, fetchWeatherForecastFx,
+    $city, changeCity,
+    fetchWeatherForecastFx,
 } from "../../utils/weather";
 import {useUnit} from "effector-react";
 
 const WeatherWindow = () => {
     const {isDarkTheme} = useContext(ThemeContext);
-    const {$forecastDays:forecastDays, $currentCard:currentCard, $city:city} = useUnit({$forecastDays,$currentCard,$city});
+    const {$city:city} = useUnit({$city});
 
     useEffect(() => {
         downloadWeatherForecast();
@@ -24,7 +23,7 @@ const WeatherWindow = () => {
        fetchWeatherForecastFx(city);
     }
 
-    function handleClick() {
+    function handleSearch() {
         downloadWeatherForecast();
     }
 
@@ -33,10 +32,10 @@ const WeatherWindow = () => {
             <div className={"searchBar"}>
                 <input type="text" id="locationInput" value={city} onChange={(e) => changeCity(e.target.value)}
                        className={`searchBarInput${(isDarkTheme) ? "Dark" : "Light"}`} placeholder="Enter a city"/>
-                <CustomButton id="searchButton" onClick={handleClick} text="Search" size="medium" variant="primary"/>
+                <CustomButton id="searchButton" onClick={handleSearch} text="Search" size="medium" variant="primary"/>
             </div>
-            <DailyWeatherList forecastDay={forecastDays}/>
-            <WeatherAdditionalInfo currentCard={currentCard}/>
+            <DailyWeatherList />
+            <WeatherAdditionalInfo />
         </div>
     );
 };
