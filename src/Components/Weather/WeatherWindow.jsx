@@ -1,61 +1,43 @@
-import React, {useEffect, useState, useMemo, useContext} from 'react';
-import {fetchWeather, fetchWeatherForecast} from "./api/keyAndURL";
+import React, {useEffect, useContext} from 'react';
 import "./WeatherWindow.css";
 import "./components/WeatherAdditionalInfo/WeatherAdditionalInfo.css"
 import DailyWeatherList from "./components/DailyWeatherList/DailyWeatherList";
 import WeatherAdditionalInfo from "./components/WeatherAdditionalInfo/WeatherAdditionalInfo";
-import {getForecastDays} from "./utils/getForecastDays";
 import CustomButton from "../UI/CustomButton/CustomButton";
 import ThemeContext from "../../Contexts/ThemeContext";
+import {
+    $city, changeCity,
+    fetchWeatherForecastFx,
+} from "../../utils/weather";
+import {useUnit} from "effector-react";
 
 const WeatherWindow = () => {
-    const [serverData, setServerData] = useState(null)
-    const [serverDataForecast, setServerDataForecast] = useState(null)
-    const [city, setCity] = useState("London");
-    const [currentCard, setCurrentCard] = useState(null);
-    const forecastDays = useMemo(() => {
-        return getForecastDays(serverDataForecast);
-    }, [serverDataForecast]);
     const {isDarkTheme} = useContext(ThemeContext);
-
+    const {$city:city} = useUnit({$city});
 
     useEffect(() => {
-        downloadWeather();
         downloadWeatherForecast();
     }, []);
 
-    async function downloadWeather() {
-        const requestResult = await fetchWeather(city);
-        setServerData(requestResult);
+    function downloadWeatherForecast() {
+       fetchWeatherForecastFx(city);
     }
 
-    async function downloadWeatherForecast() {
-        const requestResult = await fetchWeatherForecast(city);
-        setServerDataForecast(requestResult);
-    }
-
-    function handleClick() {
+    function handleSearch() {
         downloadWeatherForecast();
     }
-
-    useEffect(() => {
-        if (currentCard) {
-            setCurrentCard(forecastDays[0]);
-        }
-    }, [serverDataForecast]);
 
     return (
         <div className="container">
             <div className={"searchBar"}>
-                <input type="text" id="locationInput" value={city} onChange={e => setCity(e.target.value)}
+                <input type="text" id="locationInput" value={city} onChange={(e) => changeCity(e.target.value)}
                        className={`searchBarInput${(isDarkTheme) ? "Dark" : "Light"}`} placeholder="Enter a city"/>
-                <CustomButton id="searchButton" onClick={handleClick} text="Search" size="medium" variant="primary"/>
+                <CustomButton id="searchButton" onClick={handleSearch} text="Search" size="medium" variant="primary"/>
             </div>
-            <DailyWeatherList forecastDay={forecastDays} onCardClick={setCurrentCard}/>
-            <WeatherAdditionalInfo currentCard={currentCard}/>
+            <DailyWeatherList />
+            <WeatherAdditionalInfo />
         </div>
     );
 };
-
 
 export default WeatherWindow;
