@@ -6,7 +6,7 @@ import { lazy,Suspense } from 'react';
 import ThemeContext from "./Contexts/ThemeContext";
 
 const WeatherWindow = lazy (() => import("./Components/Weather/WeatherWindow"));
-const Calculator = lazy (() => import("./Components/Calculator/Calculator"));
+const CalculatorT = lazy (() => import("./Components/Calculator/CalculatorT.tsx"));
 const ToDoList = lazy (() => import("./Components/ToDoList/ToDoList"));
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
                 <Suspense fallback={<div>Loading...</div>}>
                     <Routes>
                         <Route path='weather' element={<WeatherWindow />} > </Route>
-                        <Route path='calculator' element={<Calculator />}> </Route>
+                        <Route path='calculator' element={<CalculatorT />}> </Route>
                         <Route path='todolist' element={<ToDoList />}> </Route>
                     </Routes>
                 </Suspense>
@@ -34,5 +34,4 @@ function App() {
 export default App;
 
 // начать изучать redux https://www.youtube.com/watch?v=C0fBnil_Im4&list=PLiZoB8JBsdznQv3kAEvTzDP2qjaUI8Vo7
-// https://restful-api.dev/
-// вся работа эффектора в to-do.js
+// https://www.youtube.com/watch?v=PYWaUwjofJo
