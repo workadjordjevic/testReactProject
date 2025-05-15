@@ -9,13 +9,13 @@ import ThemeContext from "../../Contexts/ThemeContext";
 import './Calculator.css';
 
 const Calculator: FC = () => {
-    const [value, setValue] = useState <string> ("");
-    let operands: string[] = getOperands();
-    let options: string[] = operands.concat([...Array(10)].map((_, index) => index.toString()) , ["="] , ["Clear"]);
+    const [value, setValue] = useState("");
+    let operands = getOperands();
+    let options = operands.concat([...Array(10)].map((_, index) => index.toString()) , ["="] , ["Clear"]);
     const {isDarkTheme} = useContext(ThemeContext);
 
     function handleSetValue(buttonValue :string) {
-        let tempValue :string = value;
+        let tempValue = value;
 
         if (value === "" && operands.includes(buttonValue)) {
             return;

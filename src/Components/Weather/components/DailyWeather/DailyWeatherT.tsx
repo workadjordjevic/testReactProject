@@ -1,8 +1,9 @@
 import React, {useContext} from 'react';
 import './DailyWeather.css'
 import ThemeContext from "../../../../Contexts/ThemeContext";
+import {IPropsDailyWeather} from "../../../../Interfaces/Interfaces";
 
-const DailyWeather = (props) => {
+const DailyWeather = (props:IPropsDailyWeather) => {
     const {isDarkTheme} = useContext(ThemeContext);
     return (
         <div className={`weatherCard weatherCard${(isDarkTheme)? "Dark" : "Light"}`} onClick={props.onClick}>
@@ -14,3 +15,10 @@ const DailyWeather = (props) => {
 };
 
 export default DailyWeather;
+
+
+// onClick: React.MouseEventHandler<HTMLDivElement>;
+// day : string
+// weathericon : string
+// avgTemt : number
+// minTemp : number

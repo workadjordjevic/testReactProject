@@ -1,13 +1,13 @@
 import React, {useContext} from 'react';
 import ThemeContext from "../../../../Contexts/ThemeContext";
-import {$currentCard} from "../../../../utils/weather";
+import {$currentCard} from "../../../../utils/weatherT";
 import {useUnit} from "effector-react";
 
 const WeatherAdditionalInfo = () => {
 
     const {isDarkTheme} = useContext(ThemeContext);
     const cardElementClassName = `cardElement cardElement${(isDarkTheme)? "Dark" : "Light"}`;
-    const currentCard = useUnit($currentCard);
+    const currentCard = useUnit ($currentCard);
 
     if (!currentCard) {
         return null;
@@ -54,3 +54,20 @@ const WeatherAdditionalInfo = () => {
 };
 
 export default WeatherAdditionalInfo;
+
+//{
+// astro {
+//          sunrise : string;
+//          sunset : string;
+//          moonrise : string;
+//          moonset : string;
+//      }
+// date : string;
+// date_epoch : number;
+// day  {
+//          maxwind_kph : number
+//          avghumidity : number
+//          uv : number
+//          daily_chance_of_rain : number
+//      }
+// }

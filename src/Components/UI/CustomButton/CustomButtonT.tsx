@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import "./CustomButton.css";
 import ThemeContext from "../../../Contexts/ThemeContext";
-import {PropsCustomButton} from "../../../Interfaces/Interfaces";
+import {IPropsCustomButton} from "../../../Interfaces/Interfaces";
 
 
-const CustomButton = ({id,onClick,size,variant,text,isDisabled}:PropsCustomButton) => {
+const CustomButton = ({id,onClick,size,variant,text,isDisabled}:IPropsCustomButton) => {
 
     const {isDarkTheme} = useContext(ThemeContext);
 

@@ -5,8 +5,8 @@ import NavigationBar from "./Components/NavigationBar/NavigationBar";
 import { lazy,Suspense } from 'react';
 import ThemeContext from "./Contexts/ThemeContext";
 
-const WeatherWindow = lazy (() => import("./Components/Weather/WeatherWindow"));
-const CalculatorT = lazy (() => import("./Components/Calculator/CalculatorT.tsx"));
+const WeatherWindow = lazy (() => import("./Components/Weather/WeatherWindowT"));
+const CalculatorT = lazy (() => import("./Components/Calculator/CalculatorT"));
 const ToDoList = lazy (() => import("./Components/ToDoList/ToDoList"));
 
 function App() {
