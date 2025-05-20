@@ -1,20 +1,20 @@
-import React, {useContext, useState} from 'react';
-import CalculatorButton from "./CalculatorButton";
+import React, {useContext, useState, FC} from 'react';
 import {getOperands} from "../../utils/calculator";
 import {calcCalculatorResult} from "../../utils/calculator"
 import {deleteLastSymbol} from "../../utils/string";
-import './Calculator.css';
+import CalculatorButtonT from "./CalculatorButtonT";
+import CustomInputT from "../UI/CustomInput/CustomInputT";
+import CustomButtonT from "../UI/CustomButton/CustomButtonT";
 import ThemeContext from "../../Contexts/ThemeContext";
-import CustomButton from "../UI/CustomButton/CustomButton";
-import CustomInput from "../UI/CustomInput/CustomInput";
+import './Calculator.css';
 
-const Calculator = () => {
+const Calculator: FC = () => {
     const [value, setValue] = useState("");
     let operands = getOperands();
-    let options = operands.concat([...Array(10)].map((_, index) => index) , ["="] , ["Clear"]);
+    let options = operands.concat([...Array(10)].map((_, index) => index.toString()) , ["="] , ["Clear"]);
     const {isDarkTheme} = useContext(ThemeContext);
 
-    function handleSetValue(buttonValue) {
+    function handleSetValue(buttonValue :string) {
         let tempValue = value;
 
         if (value === "" && operands.includes(buttonValue)) {
@@ -36,7 +36,7 @@ const Calculator = () => {
         }
 
         if (operands.includes(value[value.length - 1]) && operands.includes(buttonValue)) {
-             tempValue = deleteLastSymbol(tempValue);
+            tempValue = deleteLastSymbol(tempValue);
         }
 
         setValue(tempValue + buttonValue.toString());
@@ -48,17 +48,14 @@ const Calculator = () => {
 
     return (
         <div className={`${(isDarkTheme)? "dark" : "light"}ThemeCalculatorWindow calculatorWindow`}>
-            {options.map((element) => {
-                return <CalculatorButton value={element} key={element} onButtonClick={handleSetValue}/>
-            })
-            }
-            <CustomInput disabled value={value} placeholder={"Enter number here "} style={{width:"25%", height:"12%"}}/>
-            <CustomButton id="resetButton" text="Reset" size="small" variant="primary"  onClick={resetInput}>Reset</CustomButton>
+    {options.map((element) => {
+        return <CalculatorButtonT value={element} key={element} onButtonClick={handleSetValue}/>
+    })
+    }
+    <CustomInputT disabled value={value} placeholder={"Enter number here "} style={{width:"25%", height:"12%"}}/>
+    <CustomButtonT id="resetButton" text="Reset" size="small" variant="primary"  onClick={resetInput}/>
         </div>
     );
 };
 
 export default Calculator;
-
-
-// как получить данные о погоде

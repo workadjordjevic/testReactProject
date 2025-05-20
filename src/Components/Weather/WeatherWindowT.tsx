@@ -1,26 +1,26 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useContext, ChangeEvent} from 'react';
 import "./WeatherWindow.css";
 import "./components/WeatherAdditionalInfo/WeatherAdditionalInfo.css"
-import DailyWeatherList from "./components/DailyWeatherList/DailyWeatherList";
-import WeatherAdditionalInfo from "./components/WeatherAdditionalInfo/WeatherAdditionalInfo";
-import CustomButton from "../UI/CustomButton/CustomButton";
 import ThemeContext from "../../Contexts/ThemeContext";
+import {useUnit} from "effector-react";
+import CustomButtonT from "../UI/CustomButton/CustomButtonT";
 import {
     $city, changeCity,
     fetchWeatherForecastFx,
-} from "../../utils/weather";
-import {useUnit} from "effector-react";
+} from "../../utils/weatherT";
+import DailyWeatherListT from "./components/DailyWeatherList/DailyWeatherListT";
+import WeatherAdditionalInfoT from "./components/WeatherAdditionalInfo/WeatherAdditionalInfoT";
 
 const WeatherWindow = () => {
     const {isDarkTheme} = useContext(ThemeContext);
-    const {$city:city} = useUnit({$city});
+    let {$city:city} = useUnit({$city});
 
     useEffect(() => {
         downloadWeatherForecast();
     }, []);
 
     function downloadWeatherForecast() {
-       fetchWeatherForecastFx(city);
+        fetchWeatherForecastFx(city);
     }
 
     function handleSearch() {
@@ -32,12 +32,17 @@ const WeatherWindow = () => {
             <div className={"searchBar"}>
                 <input type="text" id="locationInput" value={city} onChange={(e) => changeCity(e.target.value)}
                        className={`searchBarInput${(isDarkTheme) ? "Dark" : "Light"}`} placeholder="Enter a city"/>
-                <CustomButton id="searchButton" onClick={handleSearch} text="Search" size="medium" variant="primary"/>
+                <CustomButtonT id="searchButton" onClick={handleSearch} text="Search" size="medium" variant="primary"/>
             </div>
-            <DailyWeatherList />
-            <WeatherAdditionalInfo />
+            <DailyWeatherListT />
+            <WeatherAdditionalInfoT />
         </div>
     );
 };
 
 export default WeatherWindow;
+
+
+// city : string
+// fetchWeatherForecastFx => set $serverDataForecast :IResponseData
+//
